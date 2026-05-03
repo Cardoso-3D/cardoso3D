@@ -14,17 +14,6 @@ export default function Header() {
           </h1>
         </motion.div>
         
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-          className="flex gap-8 text-[11px] uppercase tracking-[0.3em] text-zinc-400 font-bold mt-8"
-        >
-          <a href="#" className="text-white border-b border-white pb-1">Home</a>
-          <a href="#cursos" className="hover:text-white transition-colors">Cursos</a>
-          <a href="#" className="hover:text-white transition-colors">Sobre</a>
-          <a href="#" className="hover:text-white transition-colors">Suporte</a>
-        </motion.div>
       </div>
     </header>
   );
