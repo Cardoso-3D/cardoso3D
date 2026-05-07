@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ExternalLink, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   key?: string | number;
@@ -19,7 +20,6 @@ export default function ProductCard({ title, description, features, image, link,
   const glowClass = isAmber ? 'card-glow-orange' : 'card-glow-blue';
   const textAccentClass = isAmber ? 'text-cardoso-amber' : 'text-cardoso-sky';
   const bgAccentClass = isAmber ? 'bg-cardoso-amber' : 'bg-cardoso-sky';
-  const borderAccentClass = isAmber ? 'bg-cardoso-amber' : 'bg-cardoso-sky';
 
   return (
     <motion.div
@@ -39,7 +39,7 @@ export default function ProductCard({ title, description, features, image, link,
         <img 
           src={image} 
           alt={title} 
-          className="w-full h-full object-cover opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-1000"
+          className="w-full h-full object-cover opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-1000" 
         />
         <div className="absolute inset-0 bg-gradient-to-t from-cardoso-black via-cardoso-black/60 to-transparent" />
       </div>
@@ -67,14 +67,23 @@ export default function ProductCard({ title, description, features, image, link,
           ))}
         </ul>
 
-        <a 
-          href={link} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className={`inline-flex items-center justify-center h-12 px-8 ${bgAccentClass} text-black font-bold text-xs uppercase tracking-widest rounded-full hover:scale-105 active:scale-95 transition-all`}
-        >
-          Explorar Treinamento
-        </a>
+        {link.startsWith('/') ? (
+          <Link 
+            to={link} 
+            className={`inline-flex items-center justify-center h-12 px-8 ${bgAccentClass} text-black font-bold text-xs uppercase tracking-widest rounded-full hover:scale-105 active:scale-95 transition-all`}
+          >
+            Explorar Treinamento
+          </Link>
+        ) : (
+          <a 
+            href={link} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className={`inline-flex items-center justify-center h-12 px-8 ${bgAccentClass} text-black font-bold text-xs uppercase tracking-widest rounded-full hover:scale-105 active:scale-95 transition-all`}
+          >
+            Explorar Treinamento <ExternalLink className="ml-2 w-3 h-3" />
+          </a>
+        )}
       </div>
 
       {/* Bottom marker */}
@@ -85,3 +94,4 @@ export default function ProductCard({ title, description, features, image, link,
     </motion.div>
   );
 }
+

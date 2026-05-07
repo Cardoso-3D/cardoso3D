@@ -1,7 +1,10 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import ProductCard from './components/ProductCard';
 import { motion } from 'motion/react';
 import { Instagram, Youtube, Twitch, Linkedin } from 'lucide-react';
+import ZBrushDoZero from './pages/ZBrushDoZero';
+import ThreeDNaPose from './pages/ThreeDNaPose';
 
 const products = [
   {
@@ -15,8 +18,8 @@ const products = [
       "Garantia de 7 dias"
     ],
     image: "https://images.unsplash.com/photo-1633513295844-39648a3035c1?auto=format&fit=crop&q=80&w=1000",
-    link: "https://zbrushdozero.com/",
-    accent: "cardoso-accent",
+    link: "/zbrushdozero",
+    accent: "cardoso-amber",
     delay: 0.1
   },
   {
@@ -30,13 +33,13 @@ const products = [
       "Nível Profissional"
     ],
     image: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&q=80&w=1000",
-    link: "https://3dnapose.com/",
-    accent: "cardoso-blue",
+    link: "/3dnapose",
+    accent: "cardoso-sky",
     delay: 0.2
   }
 ];
 
-export default function App() {
+function Home() {
   return (
     <div className="immersive-bg min-h-screen flex flex-col p-6 md:p-12 overflow-x-hidden relative">
       <Header />
@@ -66,10 +69,10 @@ export default function App() {
         </div>
 
         <div className="flex gap-6 items-center">
-            <a href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
+            <a href="https://www.instagram.com/cardoso.3d/" target="_blank" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
               <Instagram className="w-4 h-4" />
             </a>
-            <a href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
+            <a href="https://www.youtube.com/@Cardoso.3d" target="_blank" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
               <Youtube className="w-4 h-4" />
             </a>
             <a href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
@@ -94,6 +97,18 @@ export default function App() {
         ACADEMY
       </div>
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/zbrushdozero" element={<ZBrushDoZero />} />
+        <Route path="/3dnapose" element={<ThreeDNaPose />} />
+      </Routes>
+    </Router>
   );
 }
 
