@@ -3,8 +3,8 @@ import Header from './components/Header';
 import ProductCard from './components/ProductCard';
 import { motion } from 'motion/react';
 import { Instagram, Youtube, Twitch, Linkedin } from 'lucide-react';
-import ZBrushDoZero from './pages/ZBrushDoZero';
 import ThreeDNaPose from './pages/ThreeDNaPose';
+import ZbrushDoZero from './pages/ZbrushDoZero';
 
 const products = [
   {
@@ -17,7 +17,7 @@ const products = [
       "Método simples em etapas",
       "Garantia de 7 dias"
     ],
-    image: "https://images.unsplash.com/photo-1633513295844-39648a3035c1?auto=format&fit=crop&q=80&w=1000",
+    image: "https://3dnapose.com/wp-content/uploads/2026/05/Capa_zbrushdozero.webp",
     link: "/zbrushdozero",
     accent: "cardoso-amber",
     delay: 0.1
@@ -69,17 +69,20 @@ function Home() {
         </div>
 
         <div className="flex gap-6 items-center">
-            <a href="https://www.instagram.com/cardoso.3d/" target="_blank" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
-              <Instagram className="w-4 h-4" />
+            <a href="https://www.instagram.com/cardoso.3d/" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
+              <Instagram className="w-5 h-5" />
             </a>
-            <a href="https://www.youtube.com/@Cardoso.3d" target="_blank" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
-              <Youtube className="w-4 h-4" />
+            <a href="https://www.youtube.com/@Cardoso.3d" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
+              <Youtube className="w-5 h-5" />
             </a>
-            <a href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
-              <Twitch className="w-4 h-4" />
+            <a href="https://www.twitch.tv/cardoso_3d" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
+              <Twitch className="w-5 h-5" />
             </a>
-            <a href="#" className="w-10 h-10 rounded-full glass flex items-center justify-center hover:text-white hover:bg-white/5 transition-all">
-              <Linkedin className="w-4 h-4" />
+            <a href="https://www.linkedin.com/in/viniciusnunes/" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
+              <Linkedin className="w-5 h-5" />
+            </a>
+            <a href="https://www.artstation.com/viniciusnunes" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5"><circle cx="13.5" cy="13.5" r="8.5"/><path d="M7 10L5 6L2 11"/><path d="M8 21L10 17"/><path d="M19 10L21 6L23 11"/></svg>
             </a>
         </div>
 
@@ -105,7 +108,7 @@ export default function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/zbrushdozero" element={<ZBrushDoZero />} />
+        <Route path="/zbrushdozero" element={<ZbrushDoZero />} />
         <Route path="/3dnapose" element={<ThreeDNaPose />} />
       </Routes>
     </Router>

@@ -29,19 +29,16 @@ export default function ProductCard({ title, description, features, image, link,
       transition={{ duration: 0.8, delay }}
       className={`group relative flex-1 glass rounded-3xl overflow-hidden ${glowClass} transition-all flex flex-col justify-end p-8 min-h-[500px]`}
     >
-      {/* Background Initials */}
-      <div className="absolute top-0 right-0 p-8 text-8xl opacity-5 font-black italic font-serif pointer-events-none select-none">
-        {initials}
-      </div>
+      {/* Background decoration removed */}
 
       {/* Image Overlay */}
       <div className="absolute inset-0 z-0">
         <img 
           src={image} 
           alt={title} 
-          className="w-full h-full object-cover opacity-20 group-hover:opacity-30 group-hover:scale-110 transition-all duration-1000" 
+          className="w-full h-full object-cover opacity-60 group-hover:opacity-80 group-hover:scale-110 transition-all duration-1000" 
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-cardoso-black via-cardoso-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-cardoso-black/90 via-cardoso-black/20 to-transparent" />
       </div>
 
       <div className="relative z-10 w-full">
