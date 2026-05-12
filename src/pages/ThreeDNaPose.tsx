@@ -508,48 +508,42 @@ const testimonials = [
     handle: "@jothamartins3d",
     instagram: "https://www.instagram.com/jothamartins3d/",
     text: "Extremamente satisfeito com esse investimento para o meu desenvolvimento como artista 3D. O Cardoso tem uma didática muito boa — o difícil fica fácil de entender! Com esse curso, consegui finalizar o meu primeiro modelo, e foi uma experiência incrível. O diferencial desse curso são as atualizações que são feitas constantemente, então sempre há conteúdo novo e atualizado. Apenas gratidão pelos ensinamentos e pela paciência que você teve durante os feedbacks. Kkkkk.",
-    avatar:
-      "https://ui-avatars.com/api/?name=Jose+Martins&background=18181A&color=fff",
+    avatar: "https://3dnapose.com/wp-content/uploads/2026/05/perfil_jothamartins3d_1x.webp",
   },
   {
     name: "Gabriel Ribeiro",
     handle: "@teras.3d",
     instagram: "https://www.instagram.com/teras.3d/",
     text: "O curso do Cardoso foi extremamente esclarecedor em vários pontos que eu tinha dúvida, principalmente em relação a composição, bases de estatuas e gestual. Nas aulas a maioria das minhas dúvidas eram sanadas, de forma clara e didática. Creio que qualquer um que queira melhorar suas noções gerais de escultura e arte no geral se arrependerá do curso, até porque ele engloba várias áreas diferentes de anatomia masculina/feminina, detalhamento de peças, renderização e finalização de peças. Posso recomendar de olhos fechados, que vale muito a pena.",
-    avatar:
-      "https://ui-avatars.com/api/?name=Gabriel+Ribeiro&background=18181A&color=fff",
+    avatar: "https://3dnapose.com/wp-content/uploads/2026/05/perfil_teras.3d_1x.webp",
   },
   {
     name: "Emerson Santos",
     handle: "@emerson3dart",
     instagram: "https://www.instagram.com/emerson3dart/",
     text: "Digo com toda a certeza que o '3D na Pose' é para quem realmente quer mudar de nível na sua modelagem e digo isso por que hoje eu sei que mudei de patamar graças a ele. Ele te mostra como enxergar o seu projeto de uma maneira diferente, para melhorar composição e o gestual do modelo, deixando ele muito mais interessante e bonito de se ver. A didática também é um ponto crucial, pois ele explica de maneira muito simples e efetiva, sempre mostrando na prática como fazer o que facilita muito o ensinamento.\nÉ um curso muito completo com vários módulos e extremamente abrangente pois você pode utilizar os ensinamentos em qualquer personagem que você queira fazer.",
-    avatar:
-      "https://ui-avatars.com/api/?name=Emerson+Santos&background=18181A&color=fff",
+    avatar: "https://3dnapose.com/wp-content/uploads/2026/05/Perfil_emerson3dart_1x.webp",
   },
   {
     name: "Leandro Silva",
     handle: "@leandrosilva.art",
     instagram: "https://www.instagram.com/leandrosilva.art/",
-    text: "Antes de começar, eu tinha muita dificuldade em enxergar o gestual, composição e anatomia na minha modelagem, mas com sua paciência, dedicação e olhar artístico, consegui evoluir de uma forma que eu nem imaginava. Durante o processo, o Vinicius com sua didática perfeita foi muito prestativo e claro em cada explicação, os feedbacks dele foram essenciais para o meu crescimento como artista.\nRecomendo de olhos fechados a mentoria '3D NA POSE', é um investimento no qual você não vai se arrepender. Gratidão por todo o aprendizado, Vinicius. Essa experiência marcou um novo passo na minha vida como artista 3D.",
-    avatar:
-      "https://ui-avatars.com/api/?name=Leandro+Silva&background=18181A&color=fff",
+    text: "Antes de começar, eu tinha muita dificuldade em enxergar o gestual, composição e anatomia na minha modelagem, mas com sua paciência, dedicação e olhar artístico, consegui evoluir de uma forma que eu nem imaginava. Durante o processo, o Vinicius com sua didática perfeita foi muito prestativo e claro em cada explicação, os feedbacks dele foram essenciais para o meu crescimento como artista.\nRecomendo de olhos fechados a mentoria '3D NA POSE', é um investmento no qual você não vai se arrepender. Gratidão por todo o aprendizado, Vinicius. Essa experiência marcou um novo passo na minha vida como artista 3D.",
+    avatar: "https://3dnapose.com/wp-content/uploads/2026/05/perfil_leandrosilva.art_1x.webp",
   },
   {
     name: "Bruno R. Ortolan",
     handle: "@fabricinacional",
     instagram: "https://www.instagram.com/fabricinacional/",
     text: "O curso do Cardoso além de claro e objetivo, traz um enorme conforto pra soltar a mão na modelagem, tanto pra saber o básico no digital, ou até mesmo quem já teve experiência na escultura tradicional como eu tive.\nO que foi exatamente o ponto que mais me fez comprar o curso e me satisfez mais do que o esperado, achei que muito se assemelha à liberdade tradicional com pontos técnicos do software no digital.\nIndico demais pra quem quer soltar a mão pra criar e esculpir sem medo. Desmistificando o software e possíveis bloqueios trazidos pela comum fórmula das poses simétricas.\n'3D na Pose' é um curso cada vez mais completo a cada vez que você revisita.",
-    avatar:
-      "https://ui-avatars.com/api/?name=Bruno+R+Ortolan&background=18181A&color=fff",
+    avatar: "https://ui-avatars.com/api/?name=Bruno+R+Ortolan&background=18181A&color=fff",
   },
   {
     name: "Leonardo Pizani",
     handle: "@leompizani",
     instagram: "https://www.instagram.com/leompizani/",
     text: "O curso é excelente, transformou completamente minha visão sobre gestual e composição. Estar atento a esses elementos desde o princípio permite criar estátuas muito mais interessantes, com poses naturais e base que complementam o personagem sem roubar sua atenção. E o conteúdo do curso ainda vai muito além disso, com aulas de anatomia direto na pose, tecidos, render e mais. É um investimento que vale muito a pena.",
-    avatar:
-      "https://ui-avatars.com/api/?name=Leonardo+Pizani&background=18181A&color=fff",
+    avatar: "https://3dnapose.com/wp-content/uploads/2026/05/perfil_leompizani_1x.webp",
   },
 ];
 
@@ -557,18 +551,23 @@ const bnaList = [
   {
     user: "@leandrosilva.art",
     instagram: "https://www.instagram.com/leandrosilva.art/",
-    avatar:
-      "https://ui-avatars.com/api/?name=Leandro+Silva&background=18181A&color=fff",
-    imgBefore: "https://3dnapose.com/wp-content/uploads/2025/11/1.jpg",
-    imgAfter: "https://3dnapose.com/wp-content/uploads/2025/11/2.jpg",
+    avatar: "https://3dnapose.com/wp-content/uploads/2026/05/perfil_leandrosilva.art_1x.webp",
+    imgBefore: "https://3dnapose.com/wp-content/uploads/2026/05/leandrosilvaart-antes-1_1x.webp",
+    imgAfter: "https://3dnapose.com/wp-content/uploads/2026/05/leandrosilvaart-depois-1_1x.webp",
   },
   {
     user: "@emerson3dart",
     instagram: "https://www.instagram.com/emerson3dart/",
-    avatar:
-      "https://ui-avatars.com/api/?name=Emerson+Santos&background=18181A&color=fff",
-    imgBefore: "https://3dnapose.com/wp-content/uploads/2025/11/3.jpg",
-    imgAfter: "https://3dnapose.com/wp-content/uploads/2025/11/4.jpg",
+    avatar: "https://3dnapose.com/wp-content/uploads/2026/05/Perfil_emerson3dart_1x.webp",
+    imgBefore: "https://3dnapose.com/wp-content/uploads/2026/05/emerson3dart-antes-1_1x.webp",
+    imgAfter: "https://3dnapose.com/wp-content/uploads/2026/05/emerson3dart-depois-1_1x.webp",
+  },
+  {
+    user: "@leompizani",
+    instagram: "https://www.instagram.com/leompizani/",
+    avatar: "https://3dnapose.com/wp-content/uploads/2026/05/perfil_leompizani_1x.webp",
+    imgBefore: "https://3dnapose.com/wp-content/uploads/2026/05/Leompizani-antes-1_1x.webp",
+    imgAfter: "https://3dnapose.com/wp-content/uploads/2026/05/Leompizani-depois-1_1x.webp",
   },
 ];
 
@@ -772,7 +771,7 @@ export default function ThreeDnaPose() {
               </h1>
               <p className="sub rv d1">
                 Aprenda a modelar direto na pose e criar colecionáveis com
-                qualidade de estúdio — sem retrabalho, sem T-pose, sem tentativa
+                qualidade de estúdio, sem retrabalho, sem T-pose, sem tentativa
                 e erro.
               </p>
 
@@ -950,9 +949,9 @@ export default function ThreeDnaPose() {
                 className="lede rv d2"
                 style={{ marginBottom: "48px", maxWidth: "800px" }}
               >
-                O processo que eu uso pra entregar colecionáveis pra Rafa
-                Grassetti, Red Sparrow e Flesh of Gods — agora destrinchado em 6
-                módulos práticos.
+                O processo que eu uso pra entregar colecionáveis para
+                <br />
+                Rafa Grassetti, Red Sparrow e Flesh of Gods.
               </div>
 
               <div className="pillars">
@@ -972,7 +971,7 @@ export default function ThreeDnaPose() {
                   },
                   {
                     n: "Anatomia aplicada",
-                    c: "Landmarks, compressão e estiramento na pose final — músculo natural, nunca de borracha.",
+                    c: "Landmarks, compressão e estiramento na pose final, músculo natural, nunca de borracha.",
                     i: (
                       <>
                         <circle
@@ -1037,7 +1036,7 @@ export default function ThreeDnaPose() {
                 ))}
               </div>
 
-              <div style={{ marginTop: "48px" }} className="rv">
+              <div style={{ marginTop: "48px", textAlign: "center" }} className="rv">
                 <a href="#tdp-oferta" className="btn" id="tdp-method-cta">
                   QUERO COMEÇAR AGORA <span className="arrow">→</span>
                 </a>
@@ -1295,7 +1294,7 @@ export default function ThreeDnaPose() {
                     começar em pose neutra, refazer o projeto várias vezes e
                     sentir que a peça nunca atingia o potencial. Hoje ensino o
                     processo que uso no dia a dia: começar pelo gesto, aplicar
-                    anatomia direto na pose e compor bases com leitura — sem
+                    anatomia direto na pose e compor bases com leitura, sem
                     retrabalho."
                   </p>
                   <div className="about-collab">
@@ -1622,7 +1621,7 @@ export default function ThreeDnaPose() {
                 <span className="it">no 3D de verdade?</span>
               </h2>
               <div className="lede rv d2">
-                Volte e garanta sua vaga agora — antes da próxima atualização de
+                Volte e garanta sua vaga agora, antes da próxima atualização de
                 preço.
               </div>
               <div className="rv d3" style={{ marginTop: "48px" }}>
