@@ -1,4 +1,10 @@
 import React, { useEffect } from "react";
+import {
+  ShieldCheck,
+  Infinity as InfinityIcon,
+  MessageCircle,
+  Award,
+} from "lucide-react";
 
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -138,7 +144,7 @@ const STYLES = `
 
   /* About */
   #tdp .about { padding: 96px 0; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  #tdp .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  #tdp .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
   #tdp .about-fig { position: relative; aspect-ratio: 4/5; border-radius: 12px; border: 1px solid var(--border); overflow: hidden; background: #14100c; }
   #tdp .about-fig img { width: 100%; height: 100%; object-fit: cover; opacity: 1; }
   #tdp .about-badge { position: absolute; bottom: 24px; left: 24px; font-family: var(--n); font-size: 10px; font-weight: 700; letter-spacing: 0.22em; color: var(--bone); background: rgba(0,0,0,0.5); padding: 6px 12px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.1); }
@@ -216,6 +222,12 @@ const STYLES = `
   #tdp .comp-col { padding: 48px; display: flex; flex-direction: column; gap: 24px; }
   #tdp .comp-col.left { background: rgba(255,255,255,0.02); border-right: 1px solid var(--border); }
   #tdp .comp-col.right { background: radial-gradient(circle at 100% 100%, rgba(232,102,42,0.1), transparent 60%); }
+  #tdp .comp-title { font-family: var(--d); font-size: 24px; text-transform: uppercase; color: #fff; letter-spacing: 0.05em; margin-bottom: 8px; }
+  #tdp .comp-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+  #tdp .comp-list-item { display: flex; align-items: flex-start; gap: 12px; font-family: var(--n); font-size: 15px; line-height: 1.4; color: var(--muted); }
+  #tdp .comp-list-item svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; }
+  #tdp .comp-list-item.bad svg { color: var(--red); }
+  #tdp .comp-list-item.good svg { color: var(--green); }
   #tdp .comp-label { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; width: fit-content; }
   #tdp .comp-label.l-red { background: rgba(248,113,113,0.1); color: var(--red); }
   #tdp .comp-label.l-green { background: rgba(74,222,128,0.1); color: var(--green); }
@@ -228,23 +240,41 @@ const STYLES = `
   #tdp .offer-card { position: relative; max-width: 960px; margin: 0 auto; border: 1px solid var(--border); border-radius: 16px; background: linear-gradient(180deg, var(--bg), var(--bg2)); box-shadow: 0 40px 100px -20px rgba(0,0,0,0.5); overflow: hidden; }
   #tdp .offer-ribbon { position: absolute; top: 0; right: 0; background: linear-gradient(135deg, var(--copper), var(--clay)); color: #fff; padding: 12px 32px; font-size: 11px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; border-bottom-left-radius: 16px; box-shadow: -4px 4px 20px rgba(0,0,0,0.2); }
   #tdp .offer-head { padding: 48px; text-align: center; border-bottom: 1px solid var(--border); }
-  #tdp .offer-head .logo-text { font-family: var(--d); font-size: 32px; letter-spacing: 0.05em; color: var(--copperHi); margin-bottom: 16px; }
-  #tdp .offer-head h3 { font-family: var(--d); font-size: 48px; letter-spacing: 0.02em; text-transform: uppercase; margin: 0 0 12px; font-weight: 400; color: #fff; }
+  #tdp .offer-head .offer-logo { height: 56px; width: auto; margin: 0 auto 24px; display: block; }
+  #tdp .offer-head h3 { font-family: var(--d); font-size: 48px; letter-spacing: 0.02em; text-transform: uppercase; margin: 0 0 12px; font-weight: 400; color: #fff; line-height: 1; }
   #tdp .offer-head p { font-size: 16px; color: var(--bone); font-weight: 600; margin: 0; letter-spacing: 0.05em; }
   #tdp .offer-body { display: grid; grid-template-columns: 1fr 1fr; }
-  #tdp .offer-price { padding: 48px; border-right: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle at 0% 100%, rgba(232,102,42,0.05), transparent 70%); }
-  #tdp .price-inv { font-size: 11px; font-weight: 700; color: var(--copper); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 16px; }
-  #tdp .price-12x { font-family: var(--n); font-size: 16px; font-weight: 600; font-style: normal; color: var(--muted); margin-bottom: 8px; }
-  #tdp .price-val { font-family: var(--d); font-size: 104px; line-height: 1; letter-spacing: 0.005em; color: var(--ink); margin-bottom: 8px; }
-  #tdp .price-sj { font-family: var(--n); font-size: 14px; font-weight: 500; font-style: normal; color: var(--muted2); margin-bottom: 24px; }
-  #tdp .price-div { width: 100%; height: 1px; background: var(--border); margin-bottom: 24px; }
-  #tdp .price-full { font-size: 15px; color: var(--muted); margin-bottom: 32px; font-weight: 500; }
-  #tdp .offer-feats { padding: 48px; }
-  #tdp .feats-title { font-size: 12px; font-weight: 700; color: var(--copper); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 24px; }
-  #tdp .feats-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
-  #tdp .feats-list li { display: flex; gap: 16px; align-items: flex-start; font-size: 15px; color: var(--ink); line-height: 1.4; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 16px; }
-  #tdp .feats-list li:last-child { border-bottom: none; padding-bottom: 0; }
-  #tdp .feats-list li .num { font-family: var(--d); font-size: 14px; color: var(--copperHi); }
+  
+  #tdp .offer-feats { padding: 40px 36px; }
+  #tdp .feats-title { font-family: var(--n); font-size: 11px; color: var(--copperHi); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 18px; }
+  #tdp .feats-list { list-style: none; padding: 0; margin: 0; }
+  #tdp .feats-list li { padding: 12px 0; border-top: 1px solid var(--border); display: flex; gap: 12px; font-size: 14px; color: var(--ink); line-height: 1.4; font-family: var(--n); transition: all 0.2s; }
+  #tdp .feats-list li:hover { color: var(--bone); background: rgba(232,102,42,0.03); padding-left: 8px; margin-left: -8px; margin-right: -8px; padding-right: 8px; border-radius: 4px; }
+  #tdp .feats-list li:first-child { border-top: none; }
+  #tdp .feats-list .num { font-family: var(--d); font-size: 13px; color: var(--copperHi); min-width: 24px; }
+  
+  #tdp .offer-price { padding: 40px 36px; border-right: 1px solid var(--border); text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  #tdp .price-inv { font-family: var(--n); font-size: 11px; color: var(--copperHi); letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 16px; }
+  #tdp .price-12x { margin-top: 18px; font-family: var(--s); font-style: italic; font-size: 16px; color: var(--muted); margin-bottom: 4px; }
+  #tdp .price-val { font-family: var(--d); font-weight: 400; font-size: 104px; line-height: 1; letter-spacing: 0.005em; margin-top: 4px; color: var(--ink); display: flex; align-items: baseline; justify-content: center; gap: 8px; }
+  #tdp .price-val .currency { font-size: 40px; color: var(--ink); }
+  #tdp .price-val .amount { font-size: 104px; color: var(--ink); }
+  #tdp .price-sj { font-family: var(--s); font-style: italic; font-size: 14px; color: var(--muted2); margin-top: 6px; }
+  #tdp .price-div { height: 1px; width: 100%; background: var(--border); margin: 22px 0; }
+  #tdp .price-full { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+  
+  #tdp .offer-btn { display: inline-flex; width: 100%; align-items: center; gap: 8px; padding: 20px 32px; background: linear-gradient(135deg, var(--copper), var(--clay)); color: #fff; font-family: var(--n); font-weight: 800; font-size: 15px; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 99px; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 0 30px rgba(232,102,42,0.3); justify-content: center; }
+  #tdp .offer-btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(232,102,42,0.5); }
+  #tdp .offer-btn .arrow { margin-left: 4px; transition: transform 0.3s; }
+  #tdp .offer-btn:hover .arrow { transform: translateX(4px); }
+  
+  #tdp .offer-sec { margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: var(--n); font-size: 13px; color: var(--muted2); font-weight: 500; }
+  #tdp .offer-sec svg { color: var(--copper); }
+  
+  #tdp .offer-bottom-icons { display: flex; flex-direction: column; gap: 16px; margin-top: 32px; }
+  #tdp .obi { display: flex; align-items: center; gap: 12px; }
+  #tdp .obi span { font-family: var(--n); font-size: 10px; font-weight: 700; color: var(--muted); letter-spacing: 0.05em; }
+  #tdp .obi .icon { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
 
   /* FAQ */
   #tdp .faq { padding: 96px 0; }
@@ -357,10 +387,16 @@ const STYLES = `
     #tdp .offer-card { border-radius: 12px; }
     #tdp .offer-ribbon { font-size: 9px; padding: 8px 16px; }
     #tdp .offer-head { padding: 32px 24px; }
+    #tdp .offer-head .offer-logo { height: 40px; margin-bottom: 16px; }
     #tdp .offer-head h3 { font-size: 32px; }
+    #tdp .offer-body { grid-template-columns: 1fr; }
     #tdp .offer-price { padding: 32px 24px; border-right: none; border-bottom: 1px solid var(--border); }
-    #tdp .price-val { font-size: 72px; }
     #tdp .offer-feats { padding: 32px 24px; }
+    #tdp .feats-list li { flex-direction: column; align-items: flex-start; gap: 8px; }
+    #tdp .price-val { font-size: 80px; }
+    #tdp .price-val .currency { font-size: 32px; }
+    #tdp .price-val .amount { font-size: 80px; }
+    #tdp .offer-btn { padding: 16px; font-size: 14px; flex-wrap: wrap; text-align: center; justify-content: center; width: 100%; box-sizing: border-box; }
     #tdp .faq-q { padding: 20px; }
     #tdp .faq-item.open .faq-a { max-height: 500px; padding: 0 20px 20px; }
     #tdp footer { padding: 48px 24px; }
@@ -1238,7 +1274,7 @@ export default function ThreeDnaPose() {
                       alt="Vinícius Cardoso"
                     />
                     <div className="about-badge">
-                      VINÍCIUS CARDOSO · POLYMIND
+                      Modelador 3D • Fundador Polymind Studio
                     </div>
                   </div>
                 </div>
@@ -1289,136 +1325,67 @@ export default function ThreeDnaPose() {
             </div>
           </section>
 
-          <section className="learning" style={{ padding: "96px 0" }}>
-            <div className="w">
-              <h2 className="hs rv d1">
-                O que você
-                <br />
-                <span className="it">vai aprender</span>
-              </h2>
-
-              <div className="pillars">
-                {[
-                  {
-                    n: "Gesto e Pose",
-                    c: "Linha de ação, S-curve e contraposto desde o primeiro volume.",
-                    i: (
-                      <path
-                        d="M12 4s-4 4-2 8 4 4 2 8"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                    ),
-                  },
-                  {
-                    n: "Anatomia Aplicada",
-                    c: "Landmarks ósseos guiam fibras, compressão e estiramento na pose final.",
-                    i: (
-                      <>
-                        <circle
-                          cx="12"
-                          cy="12"
-                          r="5"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        />
-                        <path
-                          d="M12 2v5M12 17v5M5 12H2M22 12h-5"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                        />
-                      </>
-                    ),
-                  },
-                  {
-                    n: "Composição e Base",
-                    c: "Direção, camadas e ponto focal — sair do disco flat e contar história.",
-                    i: (
-                      <>
-                        <rect
-                          x="3"
-                          y="14"
-                          width="18"
-                          height="8"
-                          rx="2"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        />
-                        <path
-                          d="M7 14V6l10 4v4"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </>
-                    ),
-                  },
-                ].map((p, i) => (
-                  <div key={i} className={`pillar rv d${i + 1}`}>
-                    <div className="pillar-icon">
-                      <svg viewBox="0 0 24 24">{p.i}</svg>
-                    </div>
-                    <div className="pillar-name">
-                      <span
-                        style={{ fontSize: "18px", color: "var(--copperHi)" }}
-                      >
-                        Pilar 0{i + 1}
-                      </span>
-                      <br />
-                      {p.n}
-                    </div>
-                    <div className="pillar-desc">{p.c}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ marginTop: "64px" }} className="rv">
-                <a href="#tdp-oferta" className="btn">
-                  QUERO CRIAR PERSONAGENS COM IMPACTO{" "}
-                  <span className="arrow">→</span>
-                </a>
-              </div>
-            </div>
-          </section>
-
           <section className="compare">
             <div className="w">
               <h2 className="hs rv d1" style={{ marginBottom: "48px" }}>
-                Outros caminhos
+                DOIS CAMINHOS.
                 <br />
-                <span className="it">vs. o método 3D na Pose</span>
+                <span className="it">UM RESULTADO.</span>
               </h2>
 
               <div className="comp-grid rv d2">
                 <div className="comp-col left">
-                  <div className="comp-label l-red">OUTROS CAMINHOS</div>
-                  <div className="comp-txt">
-                    Plataformas mensais soltas, tutoriais isolados. Você junta
-                    tudo sozinho, aprende partes mas continua refazendo do zero.
-                  </div>
-                  <div className="comp-quote">
-                    "Eu até aprendo, mas continuo travando na hora de
-                    transformar isso em peça profissional."
-                  </div>
+                  <div className="comp-label l-red">O CAMINHO LONGO</div>
+                  <ul className="comp-list">
+                    {[
+                      "Assinar plataformas mensais infinitas",
+                      "Comprar cursos isolados e juntar tudo sozinho",
+                      "Aprender pedaços sem ver o todo",
+                      "Travar na hora de aplicar",
+                      "Anos de tentativa e erro",
+                    ].map((item, i) => (
+                      <li key={i} className="comp-list-item bad">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <line x1="18" y1="6" x2="6" y2="18"></line>
+                          <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 <div className="comp-col right">
-                  <div className="comp-label l-green">3D NA POSE</div>
-                  <div className="comp-txt">
-                    Processo completo do gesto à peça final. Módulos encadeados,
-                    sem tentativa e erro, focado em entregar modelos para
-                    portfólio.
-                  </div>
-                  <div className="comp-quote">
-                    "Você não aprende conteúdos soltos. Você sai com peça pronta
-                    para impactar."
-                  </div>
+                  <div className="comp-label l-green">COM O 3D NA POSE</div>
+                  <ul className="comp-list">
+                    {[
+                      "Processo completo do gesto ao STL final",
+                      "Tudo num só método, na ordem certa",
+                      "Aplicação prática desde o primeiro módulo",
+                      "Personagem completo entregue em cada bloco",
+                      "Acesso vitalício + comunidade no Discord",
+                    ].map((item, i) => (
+                      <li key={i} className="comp-list-item good">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
@@ -1426,7 +1393,6 @@ export default function ThreeDnaPose() {
 
           <section className="offer" id="tdp-oferta">
             <div className="w">
-              <div className="ey rv">OFERTA 3D NA POSE</div>
               <h2 className="hs rv d1" style={{ marginBottom: "64px" }}>
                 TUDO QUE VOCÊ
                 <br />
@@ -1437,89 +1403,55 @@ export default function ThreeDnaPose() {
                 <div className="offer-ribbon">Oferta Especial</div>
 
                 <div className="offer-head">
-                  <div className="logo-text">OFERTA 3D NA POSE</div>
-                  <h3>OFERTA 3D NA POSE</h3>
+                  <img
+                    src="https://3dnapose.com/wp-content/uploads/2025/04/logo-3DNaPose.png"
+                    alt="3D NA POSE"
+                    className="offer-logo"
+                  />
+                  <h3>OFERTA ESPECIAL</h3>
                   <p>Método completo · ZBrush + Unreal Engine 5 + Photoshop</p>
                 </div>
 
                 <div className="offer-body">
                   <div className="offer-price">
-                    <div className="price-12x">Hoje, por apenas:</div>
-                    <div className="price-val">12x R$83,09</div>
+                    <div className="price-inv">Investimento</div>
+                    <div className="price-12x">12x de</div>
+                    <div className="price-val">
+                      <span className="currency">R$</span>
+                      <span className="amount">83,09</span>
+                    </div>
                     <div className="price-sj">sem juros</div>
                     <div className="price-div" />
-                    <div className="price-full">ou à vista R$ 997</div>
+                    <div className="price-full">
+                      ou à vista{" "}
+                      <strong style={{ color: "var(--ink)" }}>R$ 997</strong>
+                    </div>
+
                     <a
                       href="https://pay.hotmart.com/P96903534R?checkoutMode=10"
                       target="_blank"
                       rel="noreferrer"
-                      className="btn"
-                      style={{ width: "100%", justifyContent: "center" }}
+                      className="btn offer-btn"
                     >
-                      QUERO MEU ACESSO AGORA <span className="arrow">→</span>
+                      QUERO COMEÇAR AGORA <span className="arrow">→</span>
                     </a>
-                    <div
-                      style={{
-                        marginTop: "16px",
-                        fontSize: "12px",
-                        color: "var(--muted2)",
-                        fontWeight: 500,
-                      }}
-                    >
-                      🔒 Compra 100% segura via Hotmart
-                    </div>
                   </div>
 
                   <div className="offer-feats">
-                    <div className="feats-title">TUDO QUE VOCÊ RECEBE HOJE</div>
+                    <div className="feats-title">O que você recebe</div>
                     <ul className="feats-list">
                       {[
-                        { t: "Curso completo com 6 módulos", p: "R$ 1.997" },
-                        { t: "Aulas extras de anatomia aplicada", p: "R$ 397" },
-                        {
-                          t: "Um personagem do zero a cada 4 meses",
-                          p: "R$ 597",
-                        },
-                        { t: "Comunidade no Discord + lives", p: "R$ 297" },
-                        {
-                          t: "Processos completos em tempo real gravados",
-                          p: "R$ 197",
-                        },
-                        {
-                          t: "Brushes e Alphas exclusivos do Cardoso",
-                          p: "R$ 297",
-                        },
-                        {
-                          t: "Acesso vitalício às aulas e atualizações",
-                          p: "INCLUSO",
-                        },
-                      ].map((item, idx) => (
-                        <li
-                          key={idx}
-                          style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                          }}
-                        >
-                          <div>
-                            <span
-                              className="num"
-                              style={{ marginRight: "16px" }}
-                            >
-                              0{idx + 1}
-                            </span>{" "}
-                            {item.t}
-                          </div>
-                          <strong
-                            style={{
-                              color: "var(--copperHi)",
-                              fontFamily: "var(--n)",
-                              flexShrink: 0,
-                              paddingLeft: "12px",
-                            }}
-                          >
-                            {item.p}
-                          </strong>
+                        "Curso completo: 6 módulos do gesto ao render final",
+                        "Aulas extras de anatomia aplicada",
+                        "Novo personagem a cada 4 meses (vitalício)",
+                        "Comunidade no Discord + lives mensais",
+                        "Processos completos gravados em tempo real",
+                        "Brushes e Alphas exclusivos do Cardoso",
+                        "Acesso vitalício + atualizações futuras",
+                      ].map((t, i) => (
+                        <li key={i}>
+                          <span className="num">0{i + 1}</span>
+                          {t}
                         </li>
                       ))}
                     </ul>
