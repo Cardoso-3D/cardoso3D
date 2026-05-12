@@ -118,16 +118,18 @@ const STYLES = `
   #tdp .mod-list { display: flex; flex-direction: column; gap: 48px; margin-top: 48px; }
   #tdp .mod-item { border: 1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,0.015); overflow: hidden; }
   
-  #tdp .mod-header { padding: 40px 48px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01); }
-  #tdp .mod-head-top { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
-  #tdp .mod-num { font-family: var(--d); font-size: 32px; color: var(--copper); opacity: 0.8; }
-  #tdp .mod-label { font-size: 13px; font-weight: 800; color: var(--copperHi); letter-spacing: 0.15em; text-transform: uppercase; }
-  #tdp .mod-title { font-family: var(--d); font-size: 36px; color: #fff; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.02em; }
+  #tdp .mod-header { padding: 40px 48px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01); display: flex; gap: 32px; align-items: center; }
+  #tdp .mod-num { font-family: var(--d); font-size: 80px; line-height: 1; color: var(--clay); flex-shrink: 0; }
+  #tdp .mod-titles { flex: 1; }
+  #tdp .mod-label { font-size: 11px; font-weight: 800; color: var(--copperHi); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; display: block; }
+  #tdp .mod-title { font-family: var(--d); font-size: 32px; color: #fff; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 6px; }
+  #tdp .mod-sub { font-size: 15px; color: var(--muted); font-weight: 500; opacity: 0.8; }
   
   #tdp .mod-body { padding: 48px; }
-  #tdp .mod-body-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
-  #tdp .mod-img-wrap { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16/9; }
-  #tdp .mod-img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+  #tdp .mod-body-inner { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 64px; align-items: center; }
+  #tdp .mod-img-wrap { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #000; box-shadow: 0 20px 50px rgba(0,0,0,0.3); }
+  #tdp .mod-img-wrap img { width: 100%; height: auto; display: block; opacity: 1; transition: transform 0.6s ease; }
+  #tdp .mod-item:hover .mod-img-wrap img { transform: scale(1.03); }
   
   #tdp .mod-content-right { display: flex; flex-direction: column; gap: 24px; }
   #tdp .mod-desc { font-size: 16px; color: var(--muted); line-height: 1.6; font-weight: 500; }
@@ -367,8 +369,10 @@ const STYLES = `
     #tdp .marquee .row { font-size: 28px; gap: 24px; }
     #tdp .problem, #tdp .method, #tdp .modules, #tdp .about, #tdp .social-proof, #tdp .compare, #tdp .offer, #tdp .faq, #tdp .final, #tdp .gua { padding: 64px 0; }
     #tdp .pillars, #tdp .mod-body-inner, #tdp .about-grid, #tdp .comp-grid, #tdp .offer-body { grid-template-columns: 1fr; }
-    #tdp .mod-header { padding: 32px 24px; }
+    #tdp .mod-header { padding: 32px 24px; gap: 20px; }
+    #tdp .mod-num { font-size: 56px; }
     #tdp .mod-title { font-size: 24px; }
+    #tdp .mod-sub { font-size: 14px; }
     #tdp .mod-body { padding: 24px; }
     #tdp .mod-body-inner { gap: 32px; }
     #tdp .about-grid { gap: 32px; }
@@ -426,75 +430,75 @@ const portImgs = [
 const mods = [
   {
     n: "01",
-    t: "Apresentação, Workflow, Interface, Workflow e Monetização",
+    t: "Apresentação e Workflow",
     sub: "Interface, fluxo de trabalho e monetização",
-    d: "Você vai aprender a organizar seu fluxo de trabalho no Zbrush, dominar a interface, entender a estrutura do curso e descobrir formas reais de monetizar sua arte no mercado criativo.",
+    d: "Você vai aprender a organizar seu fluxo de trabalho no ZBrush, dominar a interface, entender a estrutura do curso e descobrir formas reais de monetizar sua arte no mercado criativo.",
     topics: [
-      "Setup completo do Zbrush",
+      "Setup completo do ZBrush",
       "Hotkeys e atalhos de produtividade",
       "Caminhos de monetização real",
     ],
-    img: portImgs[0],
+    img: "https://3dnapose.com/wp-content/uploads/2025/05/01-1024x819.png",
   },
   {
     n: "02",
     t: "Poses e Composição",
-    sub: "Fundamentos para dar vida à escultura",
-    d: "Aprenda os fundamentos essenciais para criar poses dinâmicas, utilizando linha de ação, equilíbrio, peso e exagero de proporção. Teoria e prática para dar mais vida e impacto às suas criações.",
+    sub: "Linha de ação, S-curve, contraposto e peso",
+    d: "Os fundamentos para criar poses dinâmicas, com linha de ação, equilíbrio, peso e exagero de proporção. Teoria e prática para dar vida e impacto às suas criações.",
     topics: [
       "Linha de ação e ritmo",
       "Distribuição de peso e silhueta",
       "Como evitar poses duras e estáticas",
     ],
-    img: portImgs[1],
+    img: "https://3dnapose.com/wp-content/uploads/2025/05/02-1024x819.png",
   },
   {
     n: "03",
     t: "Blocagem Atômica",
-    sub: "Volumes principais antes dos detalhes",
-    d: "Estruture o corpo em pose com foco nos volumes principais, nos pontos de referência anatômicos (landmarks) e na direção das formas, garantindo uma base sólida e expressiva.",
+    sub: "Volumes, landmarks e direção das formas",
+    d: "Estruture o corpo em pose com foco nos volumes principais, pontos de referência anatômicos (landmarks) e direção das formas, garantindo base sólida e expressiva.",
     topics: [
       "Landmarks anatômicos essenciais",
       "Estruturação em blocos primitivos",
       "Massa e proporção na prática",
     ],
-    img: portImgs[2],
+    img: "https://3dnapose.com/wp-content/uploads/2025/05/03-1024x819.png",
   },
   {
     n: "04",
     t: "Detalhamento Anatômico",
-    sub: "Refinamento e acabamento primoroso",
-    d: "Refine as inserções musculares, aprimore os detalhes da escultura e dê vida ao modelo com a introdução ao Polypaint. Um passo essencial para elevar o realismo e a expressividade.",
+    sub: "Inserções musculares e introdução ao Polypaint",
+    d: "Refine as inserções musculares, aprimore detalhes da escultura e dê vida ao modelo com introdução ao Polypaint. Passo essencial para elevar realismo e expressividade.",
     topics: [
       "Inserções musculares precisas e realistas",
       "Noções de Polypaint e cores de base",
       "Ajustes finos e expressividade anatômica",
     ],
-    img: portImgs[3],
+    img: "https://3dnapose.com/wp-content/uploads/2025/05/04-1024x819.png",
   },
   {
     n: "05",
-    t: "Escultura de Tecidos e Acessórios",
-    sub: "Dobra, peso e vestuário em 3D",
-    d: "Entenda o comportamento de differentes tipos de tecido, aprenda a direcionar o fluxo das dobras e desenvolva peças com volume, como botas e acessórios.",
+    t: "Tecidos e Acessórios",
+    sub: "Comportamento de tecidos, dobras, botas e props",
+    d: "Entenda o comportamento de diferentes tipos de tecido, aprenda a direcionar o fluxo das dobras e desenvolva peças com volume, dando mais realismo aos seus modelos.",
     topics: [
       "Tipos de dobras (tensão, compressão, etc)",
       "Modelagem de couro e tecidos grossos",
       "Integração de adereços no personagem",
     ],
-    img: portImgs[4],
+    img: "https://3dnapose.com/wp-content/uploads/2025/05/05-1024x819.png",
   },
   {
     n: "06",
-    t: "Criação de Personagem Completo",
-    sub: "Projeto final: Da blocagem ao render",
-    d: "Da pose inicial ao corte para impressão, passando pela renderização na Unreal Engine 5 e finalização no Photoshop, modele o Spider-Man do zero aplicando tudo que aprendeu.",
+    t: "Personagem Completo",
+    sub: "Spider-Man do zero ao render no UE5",
+    d: "Da pose inicial ao corte para impressão, passando pela renderização na Unreal Engine 5 e finalização no Photoshop. Você modela o Spider-Man aplicando tudo que aprendeu.",
     topics: [
       "Escultura completa do Spider-Man",
       "Cortes (Keying) para impressão 3D",
       "Renderização na UE5 e pós no Photoshop",
     ],
-    img: portImgs[5],
+    img: "https://3dnapose.com/wp-content/uploads/2025/05/06-1024x819.png",
   },
 ];
 
@@ -1047,11 +1051,12 @@ export default function ThreeDnaPose() {
                 {mods.map((m, i) => (
                   <div key={i} className={`mod-item rv d${(i % 3) + 1}`}>
                     <div className="mod-header">
-                      <div className="mod-head-top">
-                        <span className="mod-num">{m.n}</span>
+                      <div className="mod-num">{m.n}</div>
+                      <div className="mod-titles">
                         <span className="mod-label">MÓDULO {m.n}</span>
+                        <div className="mod-title">{m.t}</div>
+                        <div className="mod-sub">{m.sub}</div>
                       </div>
-                      <div className="mod-title">{m.t}</div>
                     </div>
                     <div className="mod-body">
                       <div className="mod-body-inner">
