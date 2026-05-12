@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -39,10 +39,10 @@ const STYLES = `
   #tdp main { position: relative; z-index: 1; }
   #tdp .w { max-width: 1080px; margin: 0 auto; padding: 0 56px; position: relative; }
 
-  #tdp .hd, #tdp .hs { font-family: var(--n); font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 0 16px; color: #fff; }
+  #tdp .hd, #tdp .hs { font-family: var(--n); font-weight: 800; font-size: 64px; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; margin: 0 auto 16px; color: #fff; text-align: center; }
   #tdp .hd .it, #tdp .hs .it { background: linear-gradient(90deg, var(--copper) 0%, var(--clay) 50%, var(--copperHi) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; font-style: normal; font-family: inherit; font-weight: inherit; font-size: inherit; }
-  #tdp .ey { font-family: var(--n); font-size: 11px; letter-spacing: 0.28em; color: var(--copperHi); text-transform: uppercase; margin: 0 0 18px; font-weight: 600; }
-  #tdp .lede { font-family: var(--n); font-size: 18px; color: var(--muted); line-height: 1.45; margin: 0; font-style: normal; }
+  #tdp .ey { font-family: var(--n); font-size: 11px; letter-spacing: 0.28em; color: var(--copperHi); text-transform: uppercase; margin: 0 auto 18px; font-weight: 600; text-align: center; }
+  #tdp .lede, #tdp p.sub { font-family: var(--n); font-size: 18px; color: var(--muted); line-height: 1.45; margin: 0 auto; font-style: normal; text-align: center; }
   #tdp .text-center { text-align: center; }
   
   #tdp .btn { display: inline-flex; align-items: center; gap: 10px; padding: 18px 30px; border-radius: 99px; font-family: var(--n); font-weight: 700; font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border: none; background: linear-gradient(135deg, var(--copper), var(--clay)); color: #fff; box-shadow: 0 18px 40px -10px rgba(232,102,42,0.45), inset 0 0 0 1px rgba(255,255,255,0.1); transition: transform .15s ease, box-shadow .15s ease; }
@@ -109,21 +109,32 @@ const STYLES = `
 
   /* Modules */
   #tdp .modules { padding: 96px 0; }
-  #tdp .mod-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; gap: 32px; }
-  #tdp .mod-head .lede { text-align: right; max-width: 400px; }
-  #tdp .mod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-  #tdp .mod-card { position: relative; aspect-ratio: 16/9; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 24px; text-decoration: none; transition: transform 0.3s; cursor: default; }
-  #tdp .mod-card:hover { transform: scale(1.02); }
-  #tdp .mod-card::before { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px); z-index: 1; }
-  #tdp .mod-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent); z-index: 2; }
-  #tdp .mod-card:hover::after { background: linear-gradient(to top, rgba(0,0,0,0.6), transparent); }
-  #tdp .mod-content { position: relative; z-index: 3; display: flex; flex-direction: column; justify-content: space-between; height: 100%; }
-  #tdp .mod-top { display: flex; justify-content: space-between; align-items: flex-start; }
-  #tdp .mod-rect { width: 32px; height: auto; opacity: 0.8; }
-  #tdp .mod-label { font-family: var(--n); font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.4); padding: 4px 8px; border-radius: 4px; letter-spacing: 0.1em; color: rgba(255,255,255,0.9); }
-  #tdp .mod-logo { opacity: 0.5; }
-  #tdp .mod-logo svg { width: 24px; height: 24px; color: #fff; }
-  #tdp .mod-title { font-family: var(--d); font-size: 36px; color: #fff; line-height: 1.1; letter-spacing: 0.02em; text-transform: uppercase; }
+  #tdp .mod-list { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; }
+  #tdp .mod-item { border: 1px solid var(--border); border-radius: 12px; background: rgba(255,255,255,0.015); overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+  #tdp .mod-item:hover { background: rgba(255,255,255,0.025); border-color: rgba(255,255,255,0.08); }
+  #tdp .mod-item.open { background: rgba(255,255,255,0.02); border-color: rgba(232,102,42,0.3); }
+  
+  #tdp .mod-header { display: flex; padding: 32px; cursor: pointer; position: relative; gap: 32px; align-items: flex-start; }
+  #tdp .mod-num { font-family: var(--d); font-size: 64px; line-height: 0.8; color: var(--copper); opacity: 0.8; }
+  
+  #tdp .mod-titles { flex: 1; }
+  #tdp .mod-label { font-size: 11px; font-weight: 800; color: var(--copperHi); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
+  #tdp .mod-title { font-family: var(--d); font-size: 28px; color: #fff; line-height: 1.1; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.02em; }
+  #tdp .mod-sub { font-size: 15px; color: var(--muted); }
+  
+  #tdp .mod-toggle { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
+  #tdp .mod-item.open .mod-toggle { transform: rotate(180deg); }
+  
+  #tdp .mod-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; opacity: 0; padding: 0 32px; }
+  #tdp .mod-item.open .mod-body { opacity: 1; padding-bottom: 32px; }
+  
+  #tdp .mod-body-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  #tdp .mod-body-inner .empty-left { display: block; }
+  
+  #tdp .mod-desc { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 24px; padding-top: 8px; }
+  #tdp .mod-topics { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  #tdp .mod-topics li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--muted); }
+  #tdp .mod-topics li svg { width: 16px; height: 16px; color: var(--copper); flex-shrink: 0; margin-top: 2px; }
 
   /* About */
   #tdp .about { padding: 96px 0; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -155,6 +166,50 @@ const STYLES = `
   #tdp .lb-close:hover { background: rgba(255,255,255,0.2); }
   #tdp .lb-close svg { width: 24px; height: 24px; }
   
+  /* Social Proof */
+  #tdp .social-proof { padding: 96px 0; background: var(--bg2); position: relative; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  #tdp .test-header { text-align: center; margin-bottom: 64px; }
+  #tdp .test-header .ey { margin-bottom: 16px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; }
+  #tdp .test-header .ey span.sep { width: 1px; height: 16px; background: var(--copper); opacity: 0.5; }
+  #tdp .test-header h2 { font-family: var(--d); font-size: 42px; color: #fff; text-transform: uppercase; line-height: 1; }
+  #tdp .test-header p { font-family: var(--n); font-size: 16px; color: var(--muted); max-width: 600px; margin: 16px auto 0; line-height: 1.5; }
+  
+  #tdp .test-track-wrap { display: flex; overflow-x: auto; padding-bottom: 32px; margin: 0 -24px; padding: 0 24px 32px 24px; scrollbar-width: none; user-select: none; }
+  #tdp .test-track-wrap::-webkit-scrollbar { display: none; }
+  #tdp .test-track { display: flex; gap: 24px; width: max-content; }
+
+  #tdp .test-card { flex: 0 0 340px; background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%); border: 1px solid var(--border); border-radius: 16px; padding: 32px; position: relative; }
+  #tdp .test-card::before { content:''; position:absolute; top:0; left:0; width:100%; height:100px; background: radial-gradient(circle at 50% 0%, rgba(232,102,42,0.15), transparent 70%); pointer-events: none; border-radius: 16px; }
+  #tdp .test-user { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; position: relative; z-index: 2; }
+  #tdp .test-avatar { width: 48px; height: 48px; border-radius: 50%; background: #000; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); }
+  #tdp .test-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  #tdp .test-name { font-family: var(--n); font-weight: 700; color: #fff; font-size: 15px; }
+  #tdp .test-handle { font-family: var(--n); color: var(--muted2); font-size: 12px; }
+  #tdp .test-text { font-family: var(--n); font-size: 14px; color: var(--muted); line-height: 1.6; position: relative; z-index: 2; }
+
+  /* Before After */
+  #tdp .bna-wrap { margin-top: 96px; padding-top: 96px; border-top: 1px solid rgba(255,255,255,0.05); }
+  #tdp .bna-text { text-align: center; margin-bottom: 64px; }
+  #tdp .bna-text .ey { margin-bottom: 16px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; }
+  #tdp .bna-text .ey span.sep { width: 1px; height: 16px; background: var(--copper); opacity: 0.5; }
+  #tdp .bna-text h2 { font-family: var(--d); font-size: 42px; color: #fff; text-transform: uppercase; line-height: 1; margin-bottom: 24px; }
+  #tdp .bna-text p { font-family: var(--n); font-size: 16px; color: var(--muted); max-width: 600px; margin: 0 auto; line-height: 1.5; }
+  
+  #tdp .bna-carousel-wrap { display: flex; overflow-x: auto; padding-bottom: 32px; margin: 0 -24px; padding: 0 24px 32px 24px; scrollbar-width: none; user-select: none; }
+  #tdp .bna-carousel-wrap::-webkit-scrollbar { display: none; }
+  #tdp .bna-carousel { display: flex; gap: 24px; width: max-content; }
+  
+  #tdp .bna-card { flex: 0 0 540px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; background: rgba(255,255,255,0.02); }
+  #tdp .bna-card-user { padding: 16px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+
+  #tdp .bna-card-user img { width: 32px; height: 32px; border-radius: 50%; }
+  #tdp .bna-card-user span { font-family: var(--n); font-weight: 600; color: #fff; font-size: 14px; }
+  #tdp .bna-card-imgs { display: grid; grid-template-columns: 1fr 1fr; aspect-ratio: 16/9; }
+  #tdp .bna-img-col { position: relative; }
+  #tdp .bna-img-col:first-child { border-right: 1px solid var(--border); }
+  #tdp .bna-img-col img { width: 100%; height: 100%; object-fit: cover; }
+  #tdp .bna-tag { position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.8); padding: 4px 10px; border-radius: 4px; font-family: var(--n); font-size: 11px; font-weight: 700; color: #fff; letter-spacing: 0.1em; text-transform: uppercase; }
+
   /* Compare */
   #tdp .compare { padding: 96px 0; }
   #tdp .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
@@ -190,7 +245,6 @@ const STYLES = `
   #tdp .feats-list li { display: flex; gap: 16px; align-items: flex-start; font-size: 15px; color: var(--ink); line-height: 1.4; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 16px; }
   #tdp .feats-list li:last-child { border-bottom: none; padding-bottom: 0; }
   #tdp .feats-list li .num { font-family: var(--d); font-size: 14px; color: var(--copperHi); }
-  #tdp .offer-foot { padding: 24px; text-align: center; border-top: 1px solid var(--border); background: rgba(0,0,0,0.2); font-size: 12px; font-weight: 500; color: var(--muted2); }
 
   /* FAQ */
   #tdp .faq { padding: 96px 0; }
@@ -230,10 +284,53 @@ const STYLES = `
   #tdp .d3 { transition-delay: 0.24s; }
 
   /* Floating CTA */
-  .tdp-cta { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(100px); z-index: 100; background: linear-gradient(135deg, var(--copper), var(--clay)); color: #fff; padding: 16px 28px; border-radius: 99px; font-family: 'Inter', system-ui, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; box-shadow: 0 12px 40px -8px rgba(232,102,42,0.6); display: flex; align-items: center; gap: 10px; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s; opacity: 0; pointer-events: none; white-space: nowrap; text-decoration: none; }
-  .tdp-cta.on { transform: translateX(-50%) translateY(0); opacity: 1; pointer-events: auto; }
-  .tdp-cta .arrow { transition: transform 0.15s; display: inline-block; }
-  .tdp-cta:hover .arrow { transform: translateX(4px); }
+  .tdp-cta { 
+    position: fixed; bottom: 0; left: 0; right: 0; transform: translateY(100%); z-index: 1000; 
+    background: rgba(10,8,7,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    color: #fff; padding: 16px 24px; font-family: 'Inter', system-ui, sans-serif; 
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; 
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-top: 2px solid var(--copper);
+    text-decoration: none;
+  }
+  .tdp-cta.on { transform: translateY(0); }
+  .tdp-cta .cta-price { display: flex; flex-direction: column; }
+  .tdp-cta .cta-price span:first-child { font-size: 10px; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+  .tdp-cta .cta-price span:last-child { font-size: 16px; font-weight: 800; color: #fff; }
+  .tdp-cta .cta-btn { background: linear-gradient(135deg, var(--copper), var(--clay)); padding: 12px 20px; border-radius: 99px; font-size: 11px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 8px 20px rgba(232,102,42,0.3); }
+
+  /* Guarantee Section Styles */
+  #tdp .gua { padding: 80px 0; background: var(--bg); border-top: 1px solid var(--border); }
+  #tdp .gua-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1040px; margin: 0 auto; }
+  #tdp .gua-grid .right { text-align: left; display: flex; flex-direction: column; gap: 24px; }
+  #tdp .gua-grid .left { display: flex; justify-content: center; }
+  #tdp .gua-medal { width: 360px; height: 360px; position: relative; }
+  #tdp .gua-medal svg { width: 100%; height: 100%; animation: tdpRotate 20s linear infinite; }
+  #tdp .gua-medal .inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; animation: none; }
+  #tdp .gua-medal .num { font-family: var(--d); font-size: 120px; line-height: 0.8; background: linear-gradient(180deg, var(--clay), var(--copper)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  #tdp .gua-medal .ey-top { font-family: var(--n); font-size: 14px; letter-spacing: 0.2em; color: var(--copperHi); font-weight: 700; text-transform: uppercase; margin-bottom: 8px; }
+  #tdp .gua-medal .ey-bot { font-family: var(--n); font-size: 14px; letter-spacing: 0.3em; color: #fff; font-weight: 700; text-transform: uppercase; margin-top: 12px; }
+  
+  #tdp .gua-right-ey { font-family: var(--n); font-size: 12px; letter-spacing: 0.2em; color: var(--copperHi); font-weight: 700; text-transform: uppercase; }
+  #tdp .gua-right-hd { font-family: var(--d); font-size: 56px; line-height: 1.1; letter-spacing: -0.02em; color: #fff; }
+  #tdp .gua-right-hd .grad { background: linear-gradient(90deg, var(--clay), var(--copperHi)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  
+  #tdp .gua-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+  #tdp .gua-list li { display: flex; gap: 16px; font-size: 16px; color: var(--muted); line-height: 1.5; font-family: var(--n); }
+  #tdp .gua-list .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--copperHi); flex-shrink: 0; margin-top: 9px; box-shadow: 0 0 10px rgba(232,102,42,0.5); }
+  
+  #tdp .gua-btn { display: inline-flex; align-items: center; padding: 16px 32px; background: linear-gradient(135deg, var(--copper), var(--clay)); color: #fff; font-family: var(--n); font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 99px; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 0 30px rgba(232,102,42,0.3); width: fit-content; }
+  #tdp .gua-btn:hover { transform: translateY(-2px); box-shadow: 0 0 40px rgba(232,102,42,0.5); }
+  @keyframes tdpRotate{0%{transform:rotate(0deg);}100%{transform:rotate(360deg);}}
+
+  /* Micro Social Proof Hero */
+  #tdp .hero .micro-proof { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 24px; opacity: 0.8; }
+  #tdp .hero .avatar-stack { display: flex; align-items: center; }
+  #tdp .hero .avatar-stack img { width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--bg); margin-left: -8px; }
+  #tdp .hero .avatar-stack img:first-child { margin-left: 0; }
+  #tdp .hero .stars-row { display: flex; gap: 2px; color: #fbbf24; }
+  #tdp .hero .stars-row svg { width: 12px; height: 12px; fill: currentColor; }
+  #tdp .hero .proof-text { font-size: 12px; color: var(--muted); font-weight: 500; }
 
   /* Mobile */
   @media(max-width: 900px) {
@@ -245,9 +342,14 @@ const STYLES = `
     #tdp .btn { width: 100%; justify-content: center; }
     #tdp .hero-fig { aspect-ratio: 4/5; }
     #tdp .marquee .row { font-size: 28px; gap: 24px; }
-    #tdp .problem, #tdp .method, #tdp .modules, #tdp .about, #tdp .compare, #tdp .offer, #tdp .faq, #tdp .final { padding: 64px 0; }
+    #tdp .problem, #tdp .method, #tdp .modules, #tdp .about, #tdp .social-proof, #tdp .compare, #tdp .offer, #tdp .faq, #tdp .final, #tdp .gua { padding: 64px 0; }
     #tdp .pillars, #tdp .mod-grid, #tdp .about-grid, #tdp .comp-grid, #tdp .offer-body { grid-template-columns: 1fr; }
     #tdp .about-grid { gap: 32px; }
+    #tdp .bna-wrap { margin-top: 64px; padding-top: 64px; }
+    #tdp .bna-card { flex: 0 0 320px; }
+    #tdp .bna-card-imgs { grid-template-columns: 1fr; aspect-ratio: auto; }
+    #tdp .bna-img-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+    #tdp .bna-img-col img { aspect-ratio: 4/3; }
     #tdp .mod-head, #tdp .problem-item { flex-direction: column; }
     #tdp .mod-head .lede { text-align: left; }
     #tdp .comp-col.left { border-right: none; border-bottom: 1px solid var(--border); }
@@ -263,141 +365,428 @@ const STYLES = `
     #tdp .faq-item.open .faq-a { max-height: 500px; padding: 0 20px 20px; }
     #tdp footer { padding: 48px 24px; }
     #tdp .foot-nav { flex-direction: column; gap: 16px; }
-    .tdp-cta { font-size: 11px; padding: 14px 22px; width: calc(100% - 48px); justify-content: center; left: 24px; transform: translateX(0) translateY(100px); }
-    .tdp-cta.on { transform: translateX(0) translateY(0); }
-    .tdp-cta:hover { transform: translateX(0) translateY(-2px); }
+    
+    #tdp .gua-grid { grid-template-columns: 1fr; text-align: center; gap: 48px; }
+    #tdp .gua-grid .right { text-align: center; align-items: center; }
+    #tdp .gua-medal { margin: 0 auto; width: 280px; height: 280px; }
+    #tdp .gua-medal .num { font-size: 80px; }
+    #tdp .gua-right-hd { font-size: 42px; }
+    #tdp .gua-list li { align-items: center; text-align: left; }
   }
-  @media(min-width: 901px) {
+  @media(min-width: 769px) {
     .tdp-cta { display: none !important; }
   }
+
 `;
 
 const mods = [
-  { n: '01', t: 'Apresentação e\nWorkflow', img: 'https://3dnapose.com/wp-content/uploads/2025/05/01-1024x819.png' },
-  { n: '02', t: 'Poses e\nComposição', img: 'https://3dnapose.com/wp-content/uploads/2025/05/02-1024x819.png' },
-  { n: '03', t: 'Blocagem\nAtômica', img: 'https://3dnapose.com/wp-content/uploads/2025/05/03-1024x819.png' },
-  { n: '04', t: 'Detalhamento\nAnatômico', img: 'https://3dnapose.com/wp-content/uploads/2025/05/04-1024x819.png' },
-  { n: '05', t: 'Tecidos e\nAcessórios', img: 'https://3dnapose.com/wp-content/uploads/2025/05/05-1024x819.png' },
-  { n: '06', t: 'Personagem\nCompleto', img: 'https://3dnapose.com/wp-content/uploads/2025/05/06-1024x819.png' }
+  {
+    n: "01",
+    t: "Apresentação e\nWorkflow",
+    sub: "Interface, fluxo de trabalho e monetização",
+    d: "Você vai aprender a organizar seu fluxo de trabalho no ZBrush, dominar a interface, entender a estrutura do curso e descobrir formas reais de monetizar sua arte no mercado criativo.",
+    topics: [
+      "Setup completo do ZBrush",
+      "Hotkeys e atalhos de produtividade",
+      "Caminhos de monetização real",
+    ],
+  },
+  {
+    n: "02",
+    t: "Poses e\nComposição",
+    sub: "Fundamentos para dar vida à escultura",
+    d: "Aprenda os fundamentos essenciais para criar poses dinâmicas, utilizando linha de ação, equilíbrio, peso e exagero de proporção. Teoria e prática para dar mais vida e impacto às suas criações.",
+    topics: [
+      "Linha de ação e ritmo",
+      "Distribuição de peso e silhueta",
+      "Como evitar poses duras e estáticas",
+    ],
+  },
+  {
+    n: "03",
+    t: "Blocagem\nAtômica",
+    sub: "Volumes principais antes dos detalhes",
+    d: "Estruture o corpo em pose com foco nos volumes principais, nos pontos de referência anatômicos (landmarks) e na direção das formas, garantindo uma base sólida e expressiva.",
+    topics: [
+      "Landmarks anatômicos essenciais",
+      "Estruturação em blocos primitivos",
+      "Massa e proporção na prática",
+    ],
+  },
+  {
+    n: "04",
+    t: "Detalhamento\nAnatômico",
+    sub: "Refinamento e acabamento primoroso",
+    d: "Refine as inserções musculares, aprimore os detalhes da escultura e dê vida ao modelo com a introdução ao Polypaint. Um passo essencial para elevar o realismo e a expressividade.",
+    topics: [
+      "Inserções musculares precisas e realistas",
+      "Noções de Polypaint e cores de base",
+      "Ajustes finos e expressividade anatômica",
+    ],
+  },
+  {
+    n: "05",
+    t: "Escultura de Tecidos\ne Acessórios",
+    sub: "Dobra, peso e vestuário em 3D",
+    d: "Entenda o comportamento de diferentes tipos de tecido, aprenda a direcionar o fluxo das dobras e desenvolva peças com volume, como botas e acessórios.",
+    topics: [
+      "Tipos de dobras (tensão, compressão, etc)",
+      "Modelagem de couro e tecidos grossos",
+      "Integração de adereços no personagem",
+    ],
+  },
+  {
+    n: "06",
+    t: "Criação de Personagem\nCompleto",
+    sub: "Projeto final: Da blocagem ao render",
+    d: "Da pose inicial ao corte para impressão, passando pela renderização na Unreal Engine 5 e finalização no Photoshop, modele o Spider-Man do zero aplicando tudo que aprendeu.",
+    topics: [
+      "Escultura completa do Spider-Man",
+      "Cortes (Keying) para impressão 3D",
+      "Renderização na UE5 e pós no Photoshop",
+    ],
+  },
 ];
 
 const portImgs = [
-  'https://3dnapose.com/wp-content/uploads/2025/11/1.jpg',
-  'https://3dnapose.com/wp-content/uploads/2025/11/2.jpg',
-  'https://3dnapose.com/wp-content/uploads/2025/11/3.jpg',
-  'https://3dnapose.com/wp-content/uploads/2025/11/4.jpg',
-  'https://3dnapose.com/wp-content/uploads/2025/11/5.jpg',
-  'https://3dnapose.com/wp-content/uploads/2025/11/6.jpg',
-  'https://3dnapose.com/wp-content/uploads/2025/11/7.jpg',
-  'https://3dnapose.com/wp-content/uploads/2025/11/8.jpg'
+  "https://3dnapose.com/wp-content/uploads/2025/11/1.jpg",
+  "https://3dnapose.com/wp-content/uploads/2025/11/2.jpg",
+  "https://3dnapose.com/wp-content/uploads/2025/11/3.jpg",
+  "https://3dnapose.com/wp-content/uploads/2025/11/4.jpg",
+  "https://3dnapose.com/wp-content/uploads/2025/11/5.jpg",
+  "https://3dnapose.com/wp-content/uploads/2025/11/6.jpg",
+  "https://3dnapose.com/wp-content/uploads/2025/11/7.jpg",
+  "https://3dnapose.com/wp-content/uploads/2025/11/8.jpg",
 ];
+
+const testimonials = [
+  {
+    name: "José Martins",
+    handle: "@jothamartins3d",
+    text: "Extremamente satisfeito com esse investimento para o meu desenvolvimento como artista 3D. O Cardoso tem uma didática muito boa — o difícil fica fácil de entender! Com esse curso, consegui finalizar o meu primeiro modelo, e foi uma experiência incrível. O diferencial desse curso são as atualizações que são feitas constantemente, então sempre há conteúdo novo e atualizado. Apenas gratidão pelos ensinamentos e pela paciência que você teve durante os feedbacks. Kkkkk.",
+    avatar:
+      "https://ui-avatars.com/api/?name=Jose+Martins&background=18181A&color=fff",
+  },
+  {
+    name: "Gabriel Ribeiro",
+    handle: "@teras.3D",
+    text: "O curso do Cardoso foi extremamente esclarecedor em vários pontos que eu tinha dúvida, principalmente em relação a composição, bases de estatuas e gestual. Nas aulas a maioria das minhas dúvidas eram sanadas, de forma clara e didática. Creio que qualquer um que queira melhorar suas noções gerais de escultura e arte no geral se arrependerá do curso, até porque ele engloba várias áreas diferentes de anatomia masculina/feminina, detalhamento de peças, renderização e finalização de peças. Posso recomendar de olhos fechados, que vale muito a pena.",
+    avatar:
+      "https://ui-avatars.com/api/?name=Gabriel+Ribeiro&background=18181A&color=fff",
+  },
+  {
+    name: "Emerson Santos",
+    handle: "@emerson3dart",
+    text: "Digo com toda a certeza que o '3D na Pose' é para quem realmente quer mudar de nível na sua modelagem e digo isso por que hoje eu sei que mudei de patamar graças a ele. Ele te mostra como enxergar o seu projeto de uma maneira diferente, para melhorar composição e o gestual do modelo, deixando ele muito mais interessante e bonito de se ver. A didática também é um ponto crucial, pois ele explica de maneira muito simples e efetiva, sempre mostrando na prática como fazer o que facilita muito o ensinamento.\nÉ um curso muito completo com vários módulos e extremamente abrangente pois você pode utilizar os ensinamentos em qualquer personagem que você queira fazer.",
+    avatar:
+      "https://ui-avatars.com/api/?name=Emerson+Santos&background=18181A&color=fff",
+  },
+  {
+    name: "Leandro Silva",
+    handle: "@leandrosilva.art",
+    text: "Antes de começar, eu tinha muita dificuldade em enxergar o gestual, composição e anatomia na minha modelagem, mas com sua paciência, dedicação e olhar artístico, consegui evoluir de uma forma que eu nem imaginava. Durante o processo, o Vinicius com sua didática perfeita foi muito prestativo e claro em cada explicação, os feedbacks dele foram essenciais para o meu crescimento como artista.\nRecomendo de olhos fechados a mentoria '3D NA POSE', é um investimento no qual você não vai se arrepender. Gratidão por todo o aprendizado, Vinicius. Essa experiência marcou um novo passo na minha vida como artista 3D.",
+    avatar:
+      "https://ui-avatars.com/api/?name=Leandro+Silva&background=18181A&color=fff",
+  },
+  {
+    name: "Bruno R. Ortolan",
+    handle: "@fabricinacional",
+    text: "O curso do Cardoso além de claro e objetivo, traz um enorme conforto pra soltar a mão na modelagem, tanto pra saber o básico no digital, ou até mesmo quem já teve experiência na escultura tradicional como eu tive.\nO que foi exatamente o ponto que mais me fez comprar o curso e me satisfez mais do que o esperado, achei que muito se assemelha à liberdade tradicional com pontos técnicos do software no digital.\nIndico demais pra quem quer soltar a mão pra criar e esculpir sem medo. Desmistificando o software e possíveis bloqueios trazidos pela comum fórmula das poses simétricas.\n'3D na Pose' é um curso cada vez mais completo a cada vez que você revisita.",
+    avatar:
+      "https://ui-avatars.com/api/?name=Bruno+R+Ortolan&background=18181A&color=fff",
+  },
+  {
+    name: "Leonardo Pizani",
+    handle: "@leompizani",
+    text: "O curso é excelente, transformou completamente minha visão sobre gestual e composição. Estar atento a esses elementos desde o princípio permite criar estátuas muito mais interessantes, com poses naturais e base que complementam o personagem sem roubar sua atenção. E o conteúdo do curso ainda vai muito além disso, com aulas de anatomia direto na pose, tecidos, render e mais. É um investimento que vale muito a pena.",
+    avatar:
+      "https://ui-avatars.com/api/?name=Leonardo+Pizani&background=18181A&color=fff",
+  },
+];
+
+const bnaList = [
+  {
+    user: "@leandrosilva.art",
+    avatar:
+      "https://ui-avatars.com/api/?name=Leandro+Silva&background=18181A&color=fff",
+    imgBefore: "https://3dnapose.com/wp-content/uploads/2025/11/1.jpg",
+    imgAfter: "https://3dnapose.com/wp-content/uploads/2025/11/2.jpg",
+  },
+  {
+    user: "@emerson3dart",
+    avatar:
+      "https://ui-avatars.com/api/?name=Emerson+Santos&background=18181A&color=fff",
+    imgBefore: "https://3dnapose.com/wp-content/uploads/2025/11/3.jpg",
+    imgAfter: "https://3dnapose.com/wp-content/uploads/2025/11/4.jpg",
+  },
+];
+
+function useDraggableCarousel(speed = 0.5) {
+  const trackRef = React.useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = React.useState(false);
+  const [startX, setStartX] = React.useState(0);
+  const [scrollLeft, setScrollLeft] = React.useState(0);
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  React.useEffect(() => {
+    let animationId: number;
+    const el = trackRef.current;
+    if (!el) return;
+
+    const scroll = () => {
+      if (!isHovered && !isDragging) {
+        el.scrollLeft += speed;
+        if (el.scrollLeft >= el.scrollWidth / 2) {
+          el.scrollLeft = 0;
+        }
+      }
+      animationId = requestAnimationFrame(scroll);
+    };
+
+    animationId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationId);
+  }, [isHovered, isDragging, speed]);
+
+  const onMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    if (!trackRef.current) return;
+    setStartX(e.pageX - trackRef.current.offsetLeft);
+    setScrollLeft(trackRef.current.scrollLeft);
+  };
+
+  const onMouseLeave = () => {
+    setIsDragging(false);
+    setIsHovered(false);
+  };
+
+  const onMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !trackRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - trackRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    trackRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const onMouseEnter = () => setIsHovered(true);
+
+  return {
+    trackRef,
+    handlers: {
+      onMouseDown,
+      onMouseLeave,
+      onMouseUp,
+      onMouseMove,
+      onMouseEnter,
+    },
+    isDragging,
+  };
+}
 
 export default function ThreeDnaPose() {
   const [lbImg, setLbImg] = React.useState<string | null>(null);
+  const [openMod, setOpenMod] = React.useState<number>(0);
+  const testCarousel = useDraggableCarousel(0.5);
+  const bnaCarousel = useDraggableCarousel(0.5);
+
+  const Star = () => (
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+    </svg>
+  );
 
   useEffect(() => {
-    const els = document.querySelectorAll('#tdp .rv')
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('on');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    
-    els.forEach(el => obs.observe(el));
+    const els = document.querySelectorAll("#tdp .rv");
+    const obs = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("on");
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+    );
 
-    const faqQs = document.querySelectorAll('.faq-q');
+    els.forEach((el) => obs.observe(el));
+
+    const faqQs = document.querySelectorAll(".faq-q");
     const handleFaqClick = (e: Event) => {
       const parent = (e.currentTarget as HTMLElement).parentElement;
       if (!parent) return;
-      const isOpen = parent.classList.contains('open');
-      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) parent.classList.add('open');
+      const isOpen = parent.classList.contains("open");
+      document
+        .querySelectorAll(".faq-item")
+        .forEach((i) => i.classList.remove("open"));
+      if (!isOpen) parent.classList.add("open");
     };
-    faqQs.forEach(q => q.addEventListener('click', handleFaqClick));
+    faqQs.forEach((q) => q.addEventListener("click", handleFaqClick));
 
-    const cta = document.getElementById('tdp-cta');
+    const cta = document.getElementById("tdp-cta");
     let shown = false;
-    
+
     const onScroll = () => {
-      const docHeight = document.body.scrollHeight;
-      const pct = window.scrollY / (docHeight - window.innerHeight);
-      
-      if (!shown && pct > 0.4) {
-        cta?.classList.add('on');
+      const hero = document.getElementById("tdp-home");
+      if (!hero) return;
+
+      const heroHeight = hero.offsetHeight;
+      const triggerPoint = heroHeight * 0.8;
+
+      if (!shown && window.scrollY > triggerPoint) {
+        cta?.classList.add("on");
         shown = true;
+      } else if (shown && window.scrollY <= triggerPoint) {
+        cta?.classList.remove("on");
+        shown = false;
       }
-      
-      const oferta = document.getElementById('tdp-oferta');
-      if (oferta) {
+
+      const oferta = document.getElementById("tdp-oferta");
+      if (oferta && shown) {
         const r = oferta.getBoundingClientRect();
         if (r.top < window.innerHeight && r.bottom > 0) {
-          cta?.classList.remove('on');
-        } else if (shown) {
-          cta?.classList.add('on');
+          cta?.classList.remove("on");
+        } else {
+          cta?.classList.add("on");
         }
       }
     };
-    
-    window.addEventListener('scroll', onScroll, { passive: true });
-    
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => {
       obs.disconnect();
-      faqQs.forEach(q => q.removeEventListener('click', handleFaqClick));
-      window.removeEventListener('scroll', onScroll);
+      faqQs.forEach((q) => q.removeEventListener("click", handleFaqClick));
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 
   return (
     <>
       <style>{STYLES}</style>
-      <a href="#tdp-oferta" className="tdp-cta" id="tdp-cta">Quero modelar na pose <span className="arrow">→</span></a>
+      <a href="#tdp-oferta" className="tdp-cta" id="tdp-cta">
+        <div className="cta-price">
+          <span>Por apenas</span>
+          <span>12x R$ 83,09</span>
+        </div>
+        <div className="cta-btn">GARANTIR VAGA →</div>
+      </a>
       <div id="tdp">
         <main>
-          
           <header className="nav rv">
-            <a href="#tdp-home" aria-label="3D na Pose" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}>
-              <img src="https://3dnapose.com/wp-content/uploads/2025/04/logo-3DNaPose.png" alt="3D NA POSE" className="logo-img" />
+            <a
+              href="#tdp-home"
+              aria-label="3D na Pose"
+              onClick={(e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              <img
+                src="https://3dnapose.com/wp-content/uploads/2025/04/logo-3DNaPose.png"
+                alt="3D NA POSE"
+                className="logo-img"
+              />
             </a>
-            
+
             <nav className="nav-links">
               <a href="#tdp-method">Método</a>
               <a href="#tdp-modules">Módulos</a>
               <a href="#tdp-about">Sobre</a>
-              <a href="#tdp-oferta" className="highlight">Oferta</a>
+              <a href="#tdp-oferta" className="highlight">
+                Oferta
+              </a>
             </nav>
 
-            <a href="https://pay.hotmart.com/P96903534R?checkoutMode=10" target="_blank" rel="noreferrer" className="nav-login">Entrar</a>
+            <a
+              href="https://pay.hotmart.com/P96903534R?checkoutMode=10"
+              target="_blank"
+              rel="noreferrer"
+              className="nav-login"
+            >
+              Entrar
+            </a>
           </header>
 
           <section className="hero" id="tdp-home">
             <div className="w">
-              <h1 className="hd rv">Aprenda a criar colecionáveis<br /><span className="it">com nível de estúdio</span></h1>
-              <p className="sub rv d1">Pare de perder horas refazendo suas esculturas no final. Modele direto na pose e entregue peças com impacto profissional desde o início.</p>
-              
+              <h1 className="hd rv">
+                Aprenda a criar colecionáveis
+                <br />
+                <span className="it">com nível de estúdio</span>
+              </h1>
+              <p className="sub rv d1">
+                Aprenda a modelar direto na pose e criar colecionáveis com
+                qualidade de estúdio — sem retrabalho, sem T-pose, sem tentativa
+                e erro.
+              </p>
+
               <div className="hero-fig rv d2">
-                <iframe 
-                  src="https://www.youtube.com/embed/18t1zAp_JXc?autoplay=0&rel=0" 
-                  title="YouTube video player" 
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                <iframe
+                  src="https://www.youtube.com/embed/18t1zAp_JXc?autoplay=0&rel=0"
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 ></iframe>
               </div>
 
-              <div className="rv d3" style={{marginTop: '64px'}}>
-                <a href="#tdp-oferta" className="btn">Quero modelar como profissional <span className="arrow">→</span></a>
-                
-                <div className="avatars">
-                  <img src="https://3dnapose.com/wp-content/uploads/2025/11/Group-1000009941.png" alt="Alunos" style={{height:'36px'}} />
-                  <span>Junte-se a dezenas de alunos transformando seu 3D</span>
+              <div className="rv d3" style={{ marginTop: "64px" }}>
+                <a href="#tdp-oferta" className="btn">
+                  QUERO COMEÇAR AGORA <span className="arrow">→</span>
+                </a>
+
+                <div className="micro-proof">
+                  <div className="avatar-stack">
+                    <img
+                      src="https://ui-avatars.com/api/?name=JC&background=18181A&color=fff"
+                      alt=""
+                    />
+                    <img
+                      src="https://ui-avatars.com/api/?name=GR&background=18181A&color=fff"
+                      alt=""
+                    />
+                    <img
+                      src="https://ui-avatars.com/api/?name=LS&background=18181A&color=fff"
+                      alt=""
+                    />
+                    <img
+                      src="https://ui-avatars.com/api/?name=BO&background=18181A&color=fff"
+                      alt=""
+                    />
+                  </div>
+                  <div className="stars-row">
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                    <Star />
+                  </div>
+                  <div className="proof-text">
+                    +800 alunos transformaram suas esculturas
+                  </div>
                 </div>
 
                 <div className="pills">
-                  {['Acesso Imediato', 'Plano Vitalício', 'Compra Segura', '7 Dias de Garantia'].map((p,i) => (
+                  {[
+                    "Acesso Imediato",
+                    "Plano Vitalício",
+                    "Compra Segura",
+                    "7 Dias de Garantia",
+                  ].map((p, i) => (
                     <div key={i} className="pill">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
                       {p}
                     </div>
                   ))}
@@ -408,10 +797,20 @@ export default function ThreeDnaPose() {
 
           <div className="marquee">
             <div className="track">
-              {[0,1,2,3,4,5,6,7,8,9,10,11].map(i => (
+              {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => (
                 <div key={i} className="row">
                   <span>DA POSE AO PROFISSIONAL.</span>
-                  <svg className="star" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 6l-10 12M22 12H2M6 6l12 12"/></svg>
+                  <svg
+                    className="star"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 2v20M17 6l-10 12M22 12H2M6 6l12 12" />
+                  </svg>
                 </div>
               ))}
             </div>
@@ -420,21 +819,69 @@ export default function ThreeDnaPose() {
           <section className="problem">
             <div className="w">
               <div className="problem-box">
-                <div className="ey rv">I. O Problema</div>
-                <h2 className="hs rv d1">Você começa animado<br /><span className="it">e termina refazendo tudo</span></h2>
-                
+                <h2 className="hs rv d1">
+                  Você já passou
+                  <br />
+                  <span className="it">por isso?</span>
+                </h2>
+
                 <div className="problem-list">
                   {[
-                    <>Modela com cuidado em pose neutra, mas a hora de posar <b>destrói a anatomia</b>.</>,
-                    <>A silhueta perde força. Volumes ficam estranhos. Você <b>refaz tudo do zero</b>.</>,
-                    <>Horas viram retrabalho. A peça fica "boa", <b>nunca atinge nível profissional</b>.</>,
-                    <>Você sabe modelar — mas ainda <b>não sabe construir impacto</b>.</>
-                  ].map((txt, i) => (
-                    <div key={i} className={`problem-item rv d${(i%3)+1}`}>
-                      <div className="problem-num">0{i+1}</div>
-                      <div className="problem-txt">{txt}</div>
+                    {
+                      t: "Bloca em T-pose, modela tudo…",
+                      p: "E na hora de posar, a anatomia desmonta. A silhueta perde força e tudo desanda.",
+                    },
+                    {
+                      t: "Horas refazendo o que já estava pronto",
+                      p: "Você mexe aqui, ajusta ali e quando percebe está refazendo o projeto inteiro.",
+                    },
+                    {
+                      t: 'A peça fica "ok", mas nunca profissional',
+                      p: "Você sente que sabe modelar, mas ainda não constrói aquele impacto dos grandes.",
+                    },
+                  ].map((item, i) => (
+                    <div key={i} className={`problem-item rv d${(i % 3) + 1}`}>
+                      <div className="problem-num">0{i + 1}</div>
+                      <div className="problem-txt">
+                        <div
+                          style={{
+                            fontWeight: 700,
+                            color: "var(--ink)",
+                            marginBottom: "4px",
+                            fontSize: "17px",
+                          }}
+                        >
+                          {item.t}
+                        </div>
+                        <div>{item.p}</div>
+                      </div>
                     </div>
                   ))}
+                </div>
+
+                <div
+                  className="rv d3"
+                  style={{ marginTop: "48px", textAlign: "center" }}
+                >
+                  <div
+                    style={{
+                      fontSize: "20px",
+                      fontWeight: 700,
+                      color: "var(--ink)",
+                      marginBottom: "24px",
+                    }}
+                  >
+                    O problema não é sua habilidade. É o seu PROCESSO.
+                  </div>
+                  <p
+                    style={{
+                      color: "var(--muted)",
+                      fontSize: "15px",
+                      fontWeight: 500,
+                    }}
+                  >
+                    Mais de 800 modeladores já romperam esse ciclo. Veja como ↓
+                  </p>
                 </div>
               </div>
             </div>
@@ -442,48 +889,184 @@ export default function ThreeDnaPose() {
 
           <section className="method" id="tdp-method">
             <div className="w">
-              <div className="ey rv">II. O Método</div>
-              <h2 className="hs rv d1">Modele direto na pose,<br /><span className="it">com intenção desde o gesto</span></h2>
-              
+              <h2 className="hs rv d1">
+                APRESENTANDO O MÉTODO
+                <br />
+                <span className="it">3D NA POSE</span>
+              </h2>
+              <div
+                className="lede rv d2"
+                style={{ marginBottom: "48px", maxWidth: "800px" }}
+              >
+                O processo que eu uso pra entregar colecionáveis pra Rafa
+                Grassetti, Red Sparrow e Flesh of Gods — agora destrinchado em 6
+                módulos práticos.
+              </div>
+
               <div className="pillars">
                 {[
-                  { n: 'Gesto e Pose', c: 'Linha de ação, S-curve e contraposto desde o primeiro volume.', i: <path d="M12 4s-4 4-2 8 4 4 2 8" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/> },
-                  { n: 'Anatomia Aplicada', c: 'Landmarks ósseos guiam fibras, compressão e estiramento na pose final.', i: <><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M12 2v5M12 17v5M5 12H2M22 12h-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></> },
-                  { n: 'Composição e Base', c: 'Direção, camadas e ponto focal — sair do disco flat e contar história.', i: <><rect x="3" y="14" width="18" height="8" rx="2" fill="none" stroke="currentColor" strokeWidth="2"/><path d="M7 14V6l10 4v4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></> }
+                  {
+                    n: "Modelar direto na pose",
+                    c: "Sem T-pose. Começa pelo gesto e constrói volumes com intenção desde o primeiro stroke.",
+                    i: (
+                      <path
+                        d="M12 4s-4 4-2 8 4 4 2 8"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    ),
+                  },
+                  {
+                    n: "Anatomia aplicada",
+                    c: "Landmarks, compressão e estiramento na pose final — músculo natural, nunca de borracha.",
+                    i: (
+                      <>
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="5"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <path
+                          d="M12 2v5M12 17v5M5 12H2M22 12h-5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                      </>
+                    ),
+                  },
+                  {
+                    n: "Composição narrativa",
+                    c: "Base que conta história, leitura clara em 360° e ponto focal definido.",
+                    i: (
+                      <>
+                        <rect
+                          x="3"
+                          y="14"
+                          width="18"
+                          height="8"
+                          rx="2"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <path
+                          d="M7 14V6l10 4v4"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </>
+                    ),
+                  },
                 ].map((p, i) => (
-                  <div key={i} className={`pillar rv d${i+1}`}>
-                    <div className="pillar-icon"><svg viewBox="0 0 24 24">{p.i}</svg></div>
-                    <div className="pillar-name"><span style={{fontSize:'18px', color:'var(--copperHi)'}}>Pilar 0{i+1}</span><br/>{p.n}</div>
+                  <div key={i} className={`pillar rv d${i + 1}`}>
+                    <div className="pillar-icon">
+                      <svg viewBox="0 0 24 24">{p.i}</svg>
+                    </div>
+                    <div className="pillar-name">
+                      <span
+                        style={{ fontSize: "18px", color: "var(--copperHi)" }}
+                      >
+                        Pilar 0{i + 1}
+                      </span>
+                      <br />
+                      {p.n}
+                    </div>
                     <div className="pillar-desc">{p.c}</div>
                   </div>
                 ))}
               </div>
-              
-              <div style={{marginTop: '64px'}} className="rv">
-                <a href="#tdp-oferta" className="btn">Quero criar personagens com impacto <span className="arrow">→</span></a>
+
+              <div style={{ marginTop: "48px" }} className="rv">
+                <a href="#tdp-oferta" className="btn">
+                  QUERO COMEÇAR AGORA <span className="arrow">→</span>
+                </a>
               </div>
             </div>
           </section>
 
-          <section className="modules">
+          <section className="modules" id="tdp-modules">
             <div className="w">
-              <div className="mod-head rv">
-                <div>
-                  <div className="ey">III. Programa</div>
-                  <h2 className="hs" style={{margin:0}}>Conteúdo<br/><span className="it">do curso</span></h2>
-                </div>
-                <div className="lede d1">6 módulos. Do gesto inicial à peça pronta para portfólio.</div>
+              <h2 className="hs rv d1">
+                O QUE VOCÊ
+                <br />
+                <span className="it">VAI DOMINAR</span>
+              </h2>
+              <div className="lede rv d1" style={{ marginBottom: "48px" }}>
+                6 módulos práticos do gesto inicial ao STL pronto pra impressão
+                e render no Unreal Engine 5.
               </div>
 
-              <div className="mod-grid">
+              <div className="mod-list">
                 {mods.map((m, i) => (
-                  <div key={i} className={`mod-card rv d${(i%2)+1}`} style={{backgroundImage: `url(${m.img})`, backgroundSize: 'cover', backgroundPosition: 'center'}}>
-                    <div className="mod-content">
-                      <div className="mod-top">
+                  <div
+                    key={i}
+                    className={`mod-item rv d${(i % 3) + 1} ${openMod === i ? "open" : ""}`}
+                  >
+                    <div
+                      className="mod-header"
+                      onClick={() => setOpenMod(openMod === i ? -1 : i)}
+                    >
+                      <div className="mod-num">{m.n}</div>
+                      <div className="mod-titles">
                         <div className="mod-label">MÓDULO {m.n}</div>
-                        <img src="https://3dnapose.com/wp-content/uploads/2025/04/Rectangle-20.png" alt="" className="mod-rect" />
+                        <div className="mod-title">
+                          {m.t.split("\n").map((l, j) => (
+                            <React.Fragment key={j}>
+                              {l}
+                              {j === 0 && m.t.split("\n").length > 1 && <br />}
+                            </React.Fragment>
+                          ))}
+                        </div>
+                        <div className="mod-sub">{m.sub}</div>
                       </div>
-                      <div className="mod-title">{m.t.split('\n').map((l,j)=><React.Fragment key={j}>{l}<br/></React.Fragment>)}</div>
+                      <div className="mod-toggle">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="mod-body">
+                      <div className="mod-body-inner">
+                        <div className="empty-left"></div>
+                        <div className="mod-content-right">
+                          <div className="mod-desc">{m.d}</div>
+                          <ul className="mod-topics">
+                            {m.topics?.map((topic, tid) => (
+                              <li key={tid}>
+                                <svg
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <polyline points="20 6 9 17 4 12"></polyline>
+                                </svg>
+                                {topic}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -491,15 +1074,193 @@ export default function ThreeDnaPose() {
             </div>
           </section>
 
+          <section className="social-proof" id="tdp-social">
+            <div className="w">
+              <h2 className="hs rv d1" style={{ marginBottom: "24px" }}>
+                Quem já fez,
+                <br />
+                <span className="it">fala por si</span>
+              </h2>
+              <div
+                className="lede rv d2"
+                style={{ maxWidth: "800px", marginBottom: "48px" }}
+              >
+                Conheça histórias reais de alunos que transformaram suas vidas
+                com o conhecimento que adquiriram aqui.
+              </div>
+
+              <div
+                className="test-track-wrap rv d3"
+                ref={testCarousel.trackRef}
+                style={{
+                  cursor: testCarousel.isDragging ? "grabbing" : "grab",
+                }}
+                {...testCarousel.handlers}
+              >
+                <div className="test-track">
+                  {[
+                    ...testimonials,
+                    ...testimonials,
+                    ...testimonials,
+                    ...testimonials,
+                  ].map((t, i) => (
+                    <div key={i} className="test-card">
+                      <div className="test-user">
+                        <div className="test-avatar">
+                          <img src={t.avatar} alt={t.name} draggable="false" />
+                        </div>
+                        <div>
+                          <div className="test-name">{t.name}</div>
+                          <div className="test-handle">{t.handle}</div>
+                        </div>
+                      </div>
+                      <div
+                        className="test-text"
+                        style={{ whiteSpace: "pre-line" }}
+                      >
+                        "{t.text}"
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="bna-wrap">
+                <h2 className="hs rv d1" style={{ marginBottom: "24px" }}>
+                  EVOLUÇÃO REAL,
+                  <br />
+                  <span className="it">NÃO PROMESSA</span>
+                </h2>
+                <div
+                  className="lede rv d2"
+                  style={{ maxWidth: "800px", marginBottom: "48px" }}
+                >
+                  A evolução não é teoria, é resultado. Alunos que começaram do
+                  zero, destravaram a técnica e hoje entregam com qualidade de
+                  estúdio.
+                </div>
+
+                <div
+                  className="bna-carousel-wrap rv d1"
+                  ref={bnaCarousel.trackRef}
+                  style={{
+                    cursor: bnaCarousel.isDragging ? "grabbing" : "grab",
+                  }}
+                  {...bnaCarousel.handlers}
+                >
+                  <div className="bna-carousel">
+                    {[...bnaList, ...bnaList, ...bnaList, ...bnaList].map(
+                      (item, i) => (
+                        <div key={i} className="bna-card">
+                          <div className="bna-card-user">
+                            <img
+                              src={item.avatar}
+                              alt={item.user}
+                              draggable="false"
+                            />
+                            <span>{item.user}</span>
+                          </div>
+                          <div className="bna-card-imgs">
+                            <div className="bna-img-col">
+                              <img
+                                src={item.imgBefore}
+                                alt="Antes"
+                                draggable="false"
+                              />
+                              <div
+                                className="bna-tag"
+                                style={{
+                                  background: "rgba(255,255,255,0.1)",
+                                  color: "#fff",
+                                }}
+                              >
+                                Antes
+                              </div>
+                            </div>
+                            <div className="bna-img-col">
+                              <img
+                                src={item.imgAfter}
+                                alt="Depois"
+                                draggable="false"
+                              />
+                              <div
+                                className="bna-tag"
+                                style={{
+                                  background: "var(--copper)",
+                                  color: "#000",
+                                }}
+                              >
+                                Depois
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ),
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div
+                className="rv d3"
+                style={{ textAlign: "center", marginTop: "64px" }}
+              >
+                <a
+                  href="#tdp-oferta"
+                  className="btn"
+                  style={{
+                    backgroundColor: "#fff",
+                    color: "#000",
+                    fontWeight: "bold",
+                    background: "#fff",
+                    boxShadow: "0 0 40px rgba(232,102,42,0.6)",
+                  }}
+                >
+                  QUERO ESSE RESULTADO TAMBÉM
+                </a>
+              </div>
+            </div>
+          </section>
+
           <section className="about" id="tdp-about">
             <div className="w">
+              <h2 className="hs rv d1" style={{ marginBottom: "48px" }}>
+                Vinícius
+                <br />
+                <span className="it">Cardoso</span>
+              </h2>
+
               <div className="about-grid">
                 <div className="rv">
                   <div className="about-fig">
-                    <img src="https://3dnapose.com/wp-content/uploads/2025/11/fotinha-do-vini-2.png" alt="Vinícius Cardoso" />
-                    <div className="about-badge">VINÍCIUS CARDOSO · POLYMIND</div>
+                    <img
+                      src="https://3dnapose.com/wp-content/uploads/2025/11/fotinha-do-vini-2.png"
+                      alt="Vinícius Cardoso"
+                    />
+                    <div className="about-badge">
+                      VINÍCIUS CARDOSO · POLYMIND
+                    </div>
                   </div>
-                  <div className="about-stats">
+                </div>
+
+                <div className="about-bio rv d1">
+                  <p className="lead">
+                    "Tenho mais de 8 anos no mercado e, há 3+, desenvolvo
+                    colecionáveis pela Polymind Studio."
+                  </p>
+                  <p>
+                    "Criei o método 3D na Pose porque eu não aguentava mais
+                    começar em pose neutra, refazer o projeto várias vezes e
+                    sentir que a peça nunca atingia o potencial. Hoje ensino o
+                    processo que uso no dia a dia: começar pelo gesto, aplicar
+                    anatomia direto na pose e compor bases com leitura — sem
+                    retrabalho."
+                  </p>
+                  <div className="about-collab">
+                    Colaborações: Rafa Grassetti · Red Sparrow Collectibles ·
+                    Flesh of Gods · One Page Rules
+                  </div>
+                  <div className="about-stats" style={{ marginTop: "32px" }}>
                     <div>
                       <div className="stat-num">+8</div>
                       <div className="stat-txt">anos de mercado</div>
@@ -510,23 +1271,17 @@ export default function ThreeDnaPose() {
                     </div>
                   </div>
                 </div>
-                
-                <div className="about-bio rv d1">
-                  <div>
-                    <div className="ey">IV. O Criador</div>
-                    <h2 className="hs" style={{margin:0}}>Vinícius<br/><span className="it">Cardoso</span></h2>
-                  </div>
-                  <p className="lead">"Tenho mais de 8 anos no mercado e, há 3+, desenvolvo colecionáveis pela Polymind Studio."</p>
-                  <p>"Criei o método 3D na Pose porque eu não aguentava mais começar em pose neutra, refazer o projeto várias vezes e sentir que a peça nunca atingia o potencial. Hoje ensino o processo que uso no dia a dia: começar pelo gesto, aplicar anatomia direto na pose e compor bases com leitura — sem retrabalho."</p>
-                  <div className="about-collab">Colaborações: Rafa Grassetti · Red Sparrow Collectibles · Flesh of Gods · One Page Rules</div>
-                </div>
               </div>
             </div>
-            
+
             <div className="port-wrap rv d2">
               <div className="port-track">
                 {portImgs.concat(portImgs).map((img, i) => (
-                  <div key={i} className="port-item" onClick={() => setLbImg(img)}>
+                  <div
+                    key={i}
+                    className="port-item"
+                    onClick={() => setLbImg(img)}
+                  >
                     <img src={img} alt={`Portfolio ${i}`} loading="lazy" />
                   </div>
                 ))}
@@ -534,21 +1289,136 @@ export default function ThreeDnaPose() {
             </div>
           </section>
 
+          <section className="learning" style={{ padding: "96px 0" }}>
+            <div className="w">
+              <h2 className="hs rv d1">
+                O que você
+                <br />
+                <span className="it">vai aprender</span>
+              </h2>
+
+              <div className="pillars">
+                {[
+                  {
+                    n: "Gesto e Pose",
+                    c: "Linha de ação, S-curve e contraposto desde o primeiro volume.",
+                    i: (
+                      <path
+                        d="M12 4s-4 4-2 8 4 4 2 8"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    ),
+                  },
+                  {
+                    n: "Anatomia Aplicada",
+                    c: "Landmarks ósseos guiam fibras, compressão e estiramento na pose final.",
+                    i: (
+                      <>
+                        <circle
+                          cx="12"
+                          cy="12"
+                          r="5"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <path
+                          d="M12 2v5M12 17v5M5 12H2M22 12h-5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                        />
+                      </>
+                    ),
+                  },
+                  {
+                    n: "Composição e Base",
+                    c: "Direção, camadas e ponto focal — sair do disco flat e contar história.",
+                    i: (
+                      <>
+                        <rect
+                          x="3"
+                          y="14"
+                          width="18"
+                          height="8"
+                          rx="2"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        />
+                        <path
+                          d="M7 14V6l10 4v4"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </>
+                    ),
+                  },
+                ].map((p, i) => (
+                  <div key={i} className={`pillar rv d${i + 1}`}>
+                    <div className="pillar-icon">
+                      <svg viewBox="0 0 24 24">{p.i}</svg>
+                    </div>
+                    <div className="pillar-name">
+                      <span
+                        style={{ fontSize: "18px", color: "var(--copperHi)" }}
+                      >
+                        Pilar 0{i + 1}
+                      </span>
+                      <br />
+                      {p.n}
+                    </div>
+                    <div className="pillar-desc">{p.c}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ marginTop: "64px" }} className="rv">
+                <a href="#tdp-oferta" className="btn">
+                  QUERO CRIAR PERSONAGENS COM IMPACTO{" "}
+                  <span className="arrow">→</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
           <section className="compare">
             <div className="w">
-              <div className="ey rv text-center">V. Comparativo</div>
-              <h2 className="hs rv d1 text-center" style={{marginBottom: '48px'}}>Outros caminhos<br/><span className="it">vs. o método 3D na Pose</span></h2>
-              
+              <h2 className="hs rv d1" style={{ marginBottom: "48px" }}>
+                Outros caminhos
+                <br />
+                <span className="it">vs. o método 3D na Pose</span>
+              </h2>
+
               <div className="comp-grid rv d2">
                 <div className="comp-col left">
                   <div className="comp-label l-red">OUTROS CAMINHOS</div>
-                  <div className="comp-txt">Plataformas mensais soltas, tutoriais isolados. Você junta tudo sozinho, aprende partes mas continua refazendo do zero.</div>
-                  <div className="comp-quote">"Eu até aprendo, mas continuo travando na hora de transformar isso em peça profissional."</div>
+                  <div className="comp-txt">
+                    Plataformas mensais soltas, tutoriais isolados. Você junta
+                    tudo sozinho, aprende partes mas continua refazendo do zero.
+                  </div>
+                  <div className="comp-quote">
+                    "Eu até aprendo, mas continuo travando na hora de
+                    transformar isso em peça profissional."
+                  </div>
                 </div>
                 <div className="comp-col right">
                   <div className="comp-label l-green">3D NA POSE</div>
-                  <div className="comp-txt">Processo completo do gesto à peça final. Módulos encadeados, sem tentativa e erro, focado em entregar modelos para portfólio.</div>
-                  <div className="comp-quote">"Você não aprende conteúdos soltos. Você sai com peça pronta para impactar."</div>
+                  <div className="comp-txt">
+                    Processo completo do gesto à peça final. Módulos encadeados,
+                    sem tentativa e erro, focado em entregar modelos para
+                    portfólio.
+                  </div>
+                  <div className="comp-quote">
+                    "Você não aprende conteúdos soltos. Você sai com peça pronta
+                    para impactar."
+                  </div>
                 </div>
               </div>
             </div>
@@ -556,49 +1426,182 @@ export default function ThreeDnaPose() {
 
           <section className="offer" id="tdp-oferta">
             <div className="w">
-              <div className="ey rv text-center">VI. A Oferta</div>
-              <h2 className="hs rv d1 text-center" style={{marginBottom: '64px'}}>Entre hoje e modele<br/><span className="it">direto na pose</span></h2>
-              
+              <div className="ey rv">OFERTA 3D NA POSE</div>
+              <h2 className="hs rv d1" style={{ marginBottom: "64px" }}>
+                TUDO QUE VOCÊ
+                <br />
+                <span className="it">RECEBE HOJE</span>
+              </h2>
+
               <div className="offer-card rv d2">
                 <div className="offer-ribbon">Oferta Especial</div>
-                
+
                 <div className="offer-head">
-                  <div className="logo-text">3D NA POSE</div>
-                  <h3>Curso 3D na Pose</h3>
+                  <div className="logo-text">OFERTA 3D NA POSE</div>
+                  <h3>OFERTA 3D NA POSE</h3>
                   <p>Método completo · ZBrush + Unreal Engine 5 + Photoshop</p>
                 </div>
-                
+
                 <div className="offer-body">
                   <div className="offer-price">
-                    <div className="price-inv">Investimento</div>
-                    <div className="price-12x">12x de</div>
-                    <div className="price-val">R$83,09</div>
+                    <div className="price-12x">Hoje, por apenas:</div>
+                    <div className="price-val">12x R$83,09</div>
                     <div className="price-sj">sem juros</div>
                     <div className="price-div" />
                     <div className="price-full">ou à vista R$ 997</div>
-                    <a href="https://pay.hotmart.com/P96903534R?checkoutMode=10" target="_blank" rel="noreferrer" className="btn" style={{width: '100%', justifyContent: 'center'}}>Quero modelar como profissional <span className="arrow">→</span></a>
+                    <a
+                      href="https://pay.hotmart.com/P96903534R?checkoutMode=10"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn"
+                      style={{ width: "100%", justifyContent: "center" }}
+                    >
+                      QUERO MEU ACESSO AGORA <span className="arrow">→</span>
+                    </a>
+                    <div
+                      style={{
+                        marginTop: "16px",
+                        fontSize: "12px",
+                        color: "var(--muted2)",
+                        fontWeight: 500,
+                      }}
+                    >
+                      🔒 Compra 100% segura via Hotmart
+                    </div>
                   </div>
-                  
+
                   <div className="offer-feats">
-                    <div className="feats-title">O que você recebe</div>
+                    <div className="feats-title">TUDO QUE VOCÊ RECEBE HOJE</div>
                     <ul className="feats-list">
                       {[
-                        'Curso completo (do gesto ao STL/render para portfólio)',
-                        'Aulas extras: anatomia aplicada e composição de base',
-                        'Um personagem do zero a cada 4 meses',
-                        'Acesso vitalício + atualizações',
-                        'Comunidade no Discord, e-mail e lives',
-                        'Brushes e alphas exclusivos do Cardoso',
-                        'Processos em tempo real de projetos antigos'
-                      ].map((t, i) => (
-                        <li key={i}><span className="num">0{i+1}</span> {t}</li>
+                        { t: "Curso completo com 6 módulos", p: "R$ 1.997" },
+                        { t: "Aulas extras de anatomia aplicada", p: "R$ 397" },
+                        {
+                          t: "Um personagem do zero a cada 4 meses",
+                          p: "R$ 597",
+                        },
+                        { t: "Comunidade no Discord + lives", p: "R$ 297" },
+                        {
+                          t: "Processos completos em tempo real gravados",
+                          p: "R$ 197",
+                        },
+                        {
+                          t: "Brushes e Alphas exclusivos do Cardoso",
+                          p: "R$ 297",
+                        },
+                        {
+                          t: "Acesso vitalício às aulas e atualizações",
+                          p: "INCLUSO",
+                        },
+                      ].map((item, idx) => (
+                        <li
+                          key={idx}
+                          style={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                          }}
+                        >
+                          <div>
+                            <span
+                              className="num"
+                              style={{ marginRight: "16px" }}
+                            >
+                              0{idx + 1}
+                            </span>{" "}
+                            {item.t}
+                          </div>
+                          <strong
+                            style={{
+                              color: "var(--copperHi)",
+                              fontFamily: "var(--n)",
+                              flexShrink: 0,
+                              paddingLeft: "12px",
+                            }}
+                          >
+                            {item.p}
+                          </strong>
+                        </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-                
-                <div className="offer-foot">
-                  Pagamento seguro via Hotmart · Acesso imediato após compra
+              </div>
+            </div>
+          </section>
+
+          <section className="gua" id="garantia">
+            <div className="w">
+              <div className="gua-grid">
+                <div className="left rv">
+                  <div className="gua-medal">
+                    <svg viewBox="0 0 400 400">
+                      <defs>
+                        <path
+                          id="tdp-c"
+                          d="M 200,200 m -160,0 a 160,160 0 1,1 320,0 a 160,160 0 1,1 -320,0"
+                        />
+                      </defs>
+                      <circle
+                        cx="200"
+                        cy="200"
+                        r="190"
+                        fill="none"
+                        stroke="#fff"
+                        strokeOpacity="0.1"
+                        strokeWidth="1"
+                        strokeDasharray="4 4"
+                      />
+                      <circle
+                        cx="200"
+                        cy="200"
+                        r="160"
+                        fill="none"
+                        stroke="transparent"
+                        strokeWidth="0"
+                      />
+                      <text
+                        fill="#fff"
+                        opacity="0.8"
+                        fontSize="20"
+                        letterSpacing="6"
+                        fontFamily="Inter,sans-serif"
+                        fontWeight="700"
+                      >
+                        <textPath href="#tdp-c" startOffset="0">
+                          GARANTIA · 7 DIAS · GARANTIA · 7 DIAS · GARANTIA · 7
+                          DIAS · GARANTIA · 7 DIAS · GARANTIA · 7 DIAS ·
+                          GARANTIA · 7 DIAS ·{" "}
+                        </textPath>
+                      </text>
+                    </svg>
+                    <div className="inner">
+                      <div className="ey-top">GARANTIA</div>
+                      <div className="num">7</div>
+                      <div className="ey-bot">DIAS</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="right rv d1">
+                  <div className="gua-right-ey">SEM RISCO.</div>
+                  <h2 className="gua-right-hd">
+                    <span className="grad">7 dias</span>
+                    <br />
+                    pra você decidir
+                  </h2>
+                  <ul className="gua-list">
+                    <li>
+                      <div className="dot" />
+                      Reembolso integral em qualquer momento dentro dos 7
+                      primeiros dias.
+                    </li>
+                    <li>
+                      <div className="dot" />
+                      Sem perguntas, sem formulário extenso, sem dor de cabeça.
+                    </li>
+                  </ul>
+                  <a href="#tdp-oferta" className="gua-btn">
+                    Quero entrar sem risco →
+                  </a>
                 </div>
               </div>
             </div>
@@ -606,23 +1609,64 @@ export default function ThreeDnaPose() {
 
           <section className="faq">
             <div className="w">
-              <img src="https://3dnapose.com/wp-content/uploads/2025/11/faq.png" alt="FAQ" className="rv text-center" style={{display:'block', margin:'0 auto 24px', maxWidth:'140px', opacity: 0.8}} />
-              <div className="ey rv text-center">VII. Dúvidas</div>
-              <h2 className="hs rv d1 text-center">Perguntas<br/><span className="it">frequentes</span></h2>
-              
+              <img
+                src="https://3dnapose.com/wp-content/uploads/2025/11/faq.png"
+                alt="FAQ"
+                className="rv"
+                style={{
+                  display: "block",
+                  marginBottom: "24px",
+                  maxWidth: "140px",
+                  opacity: 0.8,
+                }}
+              />
+              <h2 className="hs rv d1" style={{ marginBottom: "48px" }}>
+                Perguntas
+                <br />
+                <span className="it">frequentes</span>
+              </h2>
+
               <div className="faq-container rv d2">
                 {[
-                  {q: 'Sou iniciante no ZBrush. Serve pra mim?', a: 'Sim, desde que você saiba o básico do software: navegar na viewport, mover/rotacionar/escala, selecionar brushes e salvar arquivos. O foco do curso é gesto + composição + anatomia na pose aplicados a colecionáveis.'},
-                  {q: 'Não tenho muito tempo.', a: 'As aulas são curtas e objetivas. Dá pra estudar em blocos de 30–45 min. Acesso vitalício: você volta quando quiser. O método corta retrabalho, então você ganha tempo nas próximas peças.'},
-                  {q: 'Vou aprender anatomia?', a: 'Você aprende anatomia aplicada na pose: landmarks ósseos guiando direção de fibras, compressão/estiramento e transições limpas. Sem teoria infinita — é o que funciona no colecionável, com 2 personagens completos do zero ao final.'},
-                  {q: 'Preciso saber preparar para impressão?', a: 'Não precisa saber antes. Eu mostro a pipeline de preparação e checklists pra organizar o arquivo pra impressão. E você ainda conta com a comunidade no Discord pra tirar dúvidas.'},
-                  {q: 'E se eu não gostar?', a: 'Tem garantia de 7 dias. Entrou, testou e não fez sentido? Devolvo 100%. Sem burocracia.'},
-                  {q: 'R$ 997 é caro pra mim.', a: 'Pode parcelar em 12x sem juros e o acesso é vitalício. Você recebe 7 módulos, 2 personagens completos, módulo de tecido, brushes e alphas no Discord. O método reduz horas de retrabalho.'}
+                  {
+                    q: "Sou iniciante no ZBrush. Serve pra mim?",
+                    a: "Sim, desde que você saiba o básico do software: navegar na viewport, mover/rotacionar/escala, selecionar brushes e salvar arquivos. O foco do curso é gesto + composição + anatomia na pose aplicados a colecionáveis.",
+                  },
+                  {
+                    q: "Não tenho muito tempo.",
+                    a: "As aulas são curtas e objetivas. Dá pra estudar em blocos de 30–45 min. Acesso vitalício: você volta quando quiser. O método corta retrabalho, então você ganha tempo nas próximas peças.",
+                  },
+                  {
+                    q: "Vou aprender anatomia?",
+                    a: "Você aprende anatomia aplicada na pose: landmarks ósseos guiando direção de fibras, compressão/estiramento e transições limpas. Sem teoria infinita — é o que funciona no colecionável, com 2 personagens completos do zero ao final.",
+                  },
+                  {
+                    q: "Preciso saber preparar para impressão?",
+                    a: "Não precisa saber antes. Eu mostro a pipeline de preparação e checklists pra organizar o arquivo pra impressão. E você ainda conta com a comunidade no Discord pra tirar dúvidas.",
+                  },
+                  {
+                    q: "E se eu não gostar?",
+                    a: "Tem garantia de 7 dias. Entrou, testou e não fez sentido? Devolvo 100%. Sem burocracia.",
+                  },
+                  {
+                    q: "R$ 997 é caro pra mim.",
+                    a: "Pode parcelar em 12x sem juros e o acesso é vitalício. Você recebe 7 módulos, 2 personagens completos, módulo de tecido, brushes e alphas no Discord. O método reduz horas de retrabalho.",
+                  },
                 ].map((f, i) => (
-                  <div key={i} className={`faq-item ${i===0 ? 'open' : ''}`}>
+                  <div key={i} className={`faq-item ${i === 0 ? "open" : ""}`}>
                     <div className="faq-q">
                       <div className="faq-title">{f.q}</div>
-                      <div className="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+                      <div className="faq-icon">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <line x1="12" y1="5" x2="12" y2="19" />
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                        </svg>
+                      </div>
                     </div>
                     <div className="faq-a">{f.a}</div>
                   </div>
@@ -633,44 +1677,321 @@ export default function ThreeDnaPose() {
 
           <section className="final">
             <div className="w">
-              <div className="ey rv">VIII. Última chance</div>
-              <h2 className="hs rv d1">Pronto pra evoluir<br/><span className="it">no 3D de verdade?</span></h2>
-              <div className="lede rv d2">Volte e garanta sua vaga agora — antes da próxima atualização de preço.</div>
-              <div className="rv d3" style={{marginTop: '48px'}}>
-                <a href="#tdp-oferta" className="btn">Quero modelar na pose <span className="arrow">→</span></a>
+              <h2 className="hs rv d1">
+                Pronto pra evoluir
+                <br />
+                <span className="it">no 3D de verdade?</span>
+              </h2>
+              <div className="lede rv d2">
+                Volte e garanta sua vaga agora — antes da próxima atualização de
+                preço.
+              </div>
+              <div className="rv d3" style={{ marginTop: "48px" }}>
+                <a href="#tdp-oferta" className="btn">
+                  GARANTIR MINHA VAGA AGORA <span className="arrow">→</span>
+                </a>
               </div>
             </div>
           </section>
 
-          <footer className="rv">
-            <img src="https://3dnapose.com/wp-content/uploads/2025/05/Vector-5.png" alt="" style={{display:'block', margin:'0 auto 32px', height: '40px', opacity: 0.3}} />
-            <a href="#tdp-home"><img src="https://3dnapose.com/wp-content/uploads/2025/04/logo-3DNaPose.png" alt="3D NA POSE" className="foot-logo" /></a>
-            <div className="foot-nav">
-              <a href="#tdp-home">Home</a>
-              <a href="#tdp-about">Sobre o Vini</a>
-              <a href="#tdp-oferta">Garanta o Curso</a>
-              <a href="#tdp-method">O Método</a>
+          <footer
+            className="rv"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "40px",
+              padding: "96px 24px 64px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "16px",
+              }}
+            >
+              <a
+                href="#tdp-home"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }}
+              >
+                <img
+                  src="https://3dnapose.com/wp-content/uploads/2025/04/logo-3DNaPose.png"
+                  alt="3D NA POSE"
+                  style={{ height: "48px" }}
+                />
+              </a>
+              <p
+                style={{
+                  fontFamily: "var(--n)",
+                  fontSize: "9px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.2em",
+                  color: "rgba(255,255,255,0.4)",
+                  margin: 0,
+                  fontWeight: 700,
+                }}
+              >
+                Escultura Digital & Impressão 3D
+              </p>
             </div>
-            <div className="foot-social">
-              <a href="https://www.instagram.com/cardoso.3d/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
-              <a href="https://www.artstation.com/viniciusnunes" target="_blank" rel="noreferrer" aria-label="ArtStation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="13.5" cy="13.5" r="8.5"/><path d="M7 10L5 6L2 11"/><path d="M8 21L10 17"/><path d="M19 10L21 6L23 11"/></svg></a>
-            </div>
-            <div className="foot-copy">© 3D na Pose · Método Vinícius Cardoso · Todos os direitos reservados</div>
-            <div className="foot-cred">Projetado e Desenvolvido pela JotaStudio</div>
-            
-            <div className="back-top" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>Voltar ao topo</div>
-          </footer>
 
+            <div
+              className="foot-social"
+              style={{
+                marginBottom: 0,
+                marginTop: 0,
+                display: "flex",
+                gap: "24px",
+              }}
+            >
+              <a
+                href="https://www.instagram.com/cardoso.3d/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "rgba(255,255,255,0.02)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "all 0.2s",
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: "20px", height: "20px" }}
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="https://www.youtube.com/@Cardoso.3d"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "rgba(255,255,255,0.02)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "all 0.2s",
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: "20px", height: "20px" }}
+                >
+                  <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
+                  <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+                </svg>
+              </a>
+              <a
+                href="https://www.twitch.tv/cardoso_3d"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitch"
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "rgba(255,255,255,0.02)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "all 0.2s",
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: "20px", height: "20px" }}
+                >
+                  <path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7" />
+                </svg>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/vinicius-cardoso-3370631b7/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "rgba(255,255,255,0.02)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "all 0.2s",
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: "20px", height: "20px" }}
+                >
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </a>
+              <a
+                href="https://www.artstation.com/viniciusnunes"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="ArtStation"
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "50%",
+                  border: "1px solid rgba(255,255,255,0.1)",
+                  background: "rgba(255,255,255,0.02)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  transition: "all 0.2s",
+                }}
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{ width: "20px", height: "20px" }}
+                >
+                  <circle cx="13.5" cy="13.5" r="8.5" />
+                  <path d="M7 10L5 6L2 11" />
+                  <path d="M8 21L10 17" />
+                  <path d="M19 10L21 6L23 11" />
+                </svg>
+              </a>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                gap: "8px",
+                borderTop: "1px solid rgba(255,255,255,0.05)",
+                width: "100%",
+                maxWidth: "384px",
+                paddingTop: "32px",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  gap: "24px",
+                  fontFamily: "var(--n)",
+                  fontSize: "11px",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.1em",
+                  fontWeight: 600,
+                }}
+              >
+                <a
+                  href="#"
+                  style={{
+                    color: "rgba(255,255,255,0.6)",
+                    textDecoration: "none",
+                  }}
+                >
+                  Termos
+                </a>
+                <a
+                  href="#"
+                  style={{
+                    color: "rgba(255,255,255,0.6)",
+                    textDecoration: "none",
+                  }}
+                >
+                  Privacidade
+                </a>
+              </div>
+              <div
+                className="foot-copy"
+                style={{
+                  marginTop: "8px",
+                  opacity: 0.4,
+                  fontSize: "11px",
+                  fontFamily: "var(--n)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                  fontWeight: 600,
+                }}
+              >
+                &copy; {new Date().getFullYear()} Cardoso3D Studio
+              </div>
+            </div>
+          </footer>
         </main>
-        
+
         {/* Lightbox */}
-        <div className={`lightbox ${lbImg ? 'active' : ''}`} onClick={() => setLbImg(null)}>
-          <button className="lb-close" onClick={() => setLbImg(null)} aria-label="Fechar">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        <div
+          className={`lightbox ${lbImg ? "active" : ""}`}
+          onClick={() => setLbImg(null)}
+        >
+          <button
+            className="lb-close"
+            onClick={() => setLbImg(null)}
+            aria-label="Fechar"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
           </button>
-          {lbImg && <img src={lbImg} alt="Portfolio Ampliado" onClick={e => e.stopPropagation()} />}
+          {lbImg && (
+            <img
+              src={lbImg}
+              alt="Portfolio Ampliado"
+              onClick={(e) => e.stopPropagation()}
+            />
+          )}
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -78,7 +78,7 @@ function Home() {
             <a href="https://www.twitch.tv/cardoso_3d" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
               <Twitch className="w-5 h-5" />
             </a>
-            <a href="https://www.linkedin.com/in/viniciusnunes/" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
+            <a href="https://www.linkedin.com/in/vinicius-cardoso-3370631b7/" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
               <Linkedin className="w-5 h-5" />
             </a>
             <a href="https://www.artstation.com/viniciusnunes" target="_blank" rel="noopener noreferrer" className="w-[48px] h-[48px] rounded-full flex items-center justify-center border border-white/10 bg-white/[0.02] hover:text-white hover:bg-white/5 hover:border-white/20 transition-all">
