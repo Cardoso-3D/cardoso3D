@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 interface ProductCardProps {
   key?: string | number;
+  id?: string;
   title: string;
   description: string;
   features: string[];
@@ -15,7 +16,7 @@ interface ProductCardProps {
   initials: string;
 }
 
-export default function ProductCard({ title, description, features, image, link, accent, delay, initials }: ProductCardProps) {
+export default function ProductCard({ id, title, description, features, image, link, accent, delay, initials }: ProductCardProps) {
   const isAmber = accent.includes('amber') || accent.includes('accent');
   const glowClass = isAmber ? 'card-glow-orange' : 'card-glow-blue';
   const textAccentClass = isAmber ? 'text-cardoso-amber' : 'text-cardoso-sky';
@@ -28,6 +29,7 @@ export default function ProductCard({ title, description, features, image, link,
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay }}
       className={`group relative flex-1 glass rounded-3xl overflow-hidden ${glowClass} transition-all flex flex-col justify-end p-8 min-h-[500px]`}
+      id={id}
     >
       {/* Background decoration removed */}
 
@@ -67,6 +69,7 @@ export default function ProductCard({ title, description, features, image, link,
         {link.startsWith('/') ? (
           <Link 
             to={link} 
+            id={`${id}-cta`}
             className={`inline-flex items-center justify-center h-12 px-8 ${bgAccentClass} text-black font-bold text-xs uppercase tracking-widest rounded-full hover:scale-105 active:scale-95 transition-all`}
           >
             Explorar Treinamento
@@ -74,6 +77,7 @@ export default function ProductCard({ title, description, features, image, link,
         ) : (
           <a 
             href={link} 
+            id={`${id}-cta`}
             target="_blank" 
             rel="noopener noreferrer"
             className={`inline-flex items-center justify-center h-12 px-8 ${bgAccentClass} text-black font-bold text-xs uppercase tracking-widest rounded-full hover:scale-105 active:scale-95 transition-all`}

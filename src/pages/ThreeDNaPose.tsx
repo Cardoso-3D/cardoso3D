@@ -709,7 +709,7 @@ export default function ThreeDnaPose() {
   return (
     <>
       <style>{STYLES}</style>
-      <a href="#tdp-oferta" className="tdp-cta" id="tdp-cta">
+      <a href="#tdp-oferta" className="tdp-cta" id="tdp-floating-cta">
         <div className="cta-price">
           <span>Por apenas</span>
           <span>12x R$ 83,09</span>
@@ -720,6 +720,7 @@ export default function ThreeDnaPose() {
         <main>
           <header className="nav rv">
             <a
+              id="tdp-nav-logo"
               href="#tdp-home"
               aria-label="3D na Pose"
               onClick={(e) => {
@@ -735,10 +736,10 @@ export default function ThreeDnaPose() {
             </a>
 
             <nav className="nav-links">
-              <a href="#tdp-method">Método</a>
-              <a href="#tdp-modules">Módulos</a>
-              <a href="#tdp-about">Sobre</a>
-              <a href="#tdp-oferta" className="highlight">
+              <a href="#tdp-method" id="tdp-nav-method">Método</a>
+              <a href="#tdp-modules" id="tdp-nav-modules">Módulos</a>
+              <a href="#tdp-about" id="tdp-nav-about">Sobre</a>
+              <a href="#tdp-oferta" className="highlight" id="tdp-nav-oferta">
                 Oferta
               </a>
             </nav>
@@ -748,6 +749,7 @@ export default function ThreeDnaPose() {
               target="_blank"
               rel="noreferrer"
               className="nav-login"
+              id="tdp-nav-login"
             >
               Entrar
             </a>
@@ -776,7 +778,7 @@ export default function ThreeDnaPose() {
               </div>
 
               <div className="rv d3" style={{ marginTop: "64px" }}>
-                <a href="#tdp-oferta" className="btn">
+                <a href="#tdp-oferta" className="btn" id="tdp-hero-cta">
                   QUERO COMEÇAR AGORA <span className="arrow">→</span>
                 </a>
 
@@ -1028,7 +1030,7 @@ export default function ThreeDnaPose() {
               </div>
 
               <div style={{ marginTop: "48px" }} className="rv">
-                <a href="#tdp-oferta" className="btn">
+                <a href="#tdp-oferta" className="btn" id="tdp-method-cta">
                   QUERO COMEÇAR AGORA <span className="arrow">→</span>
                 </a>
               </div>
@@ -1225,6 +1227,7 @@ export default function ThreeDnaPose() {
                 <a
                   href="#tdp-oferta"
                   className="btn"
+                  id="tdp-social-proof-cta"
                   style={{
                     backgroundColor: "#fff",
                     color: "#000",
@@ -1410,6 +1413,7 @@ export default function ThreeDnaPose() {
 
                     <a
                       href="https://pay.hotmart.com/P96903534R?checkoutMode=10"
+                      id="tdp-checkout-cta"
                       target="_blank"
                       rel="noreferrer"
                       className="btn offer-btn"
@@ -1512,7 +1516,7 @@ export default function ThreeDnaPose() {
                       Sem perguntas, sem formulário extenso, sem dor de cabeça.
                     </li>
                   </ul>
-                  <a href="#tdp-oferta" className="gua-btn">
+                  <a href="#tdp-oferta" className="gua-btn" id="tdp-garantia-cta">
                     Quero entrar sem risco →
                   </a>
                 </div>
@@ -1600,7 +1604,7 @@ export default function ThreeDnaPose() {
                 preço.
               </div>
               <div className="rv d3" style={{ marginTop: "48px" }}>
-                <a href="#tdp-oferta" className="btn">
+                <a href="#tdp-oferta" className="btn" id="tdp-final-cta">
                   GARANTIR MINHA VAGA AGORA <span className="arrow">→</span>
                 </a>
               </div>
@@ -1664,6 +1668,7 @@ export default function ThreeDnaPose() {
             >
               <a
                 href="https://www.instagram.com/cardoso.3d/"
+                id="tdp-footer-social-instagram"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -1695,6 +1700,7 @@ export default function ThreeDnaPose() {
               </a>
               <a
                 href="https://www.youtube.com/@Cardoso.3d"
+                id="tdp-footer-social-youtube"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="YouTube"
@@ -1725,6 +1731,7 @@ export default function ThreeDnaPose() {
               </a>
               <a
                 href="https://www.twitch.tv/cardoso_3d"
+                id="tdp-footer-social-twitch"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Twitch"
@@ -1754,6 +1761,7 @@ export default function ThreeDnaPose() {
               </a>
               <a
                 href="https://www.linkedin.com/in/vinicius-cardoso-3370631b7/"
+                id="tdp-footer-social-linkedin"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
@@ -1785,6 +1793,7 @@ export default function ThreeDnaPose() {
               </a>
               <a
                 href="https://www.artstation.com/viniciusnunes"
+                id="tdp-footer-social-artstation"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="ArtStation"
@@ -1842,6 +1851,7 @@ export default function ThreeDnaPose() {
               >
                 <a
                   href="#"
+                  id="tdp-footer-terms"
                   style={{
                     color: "rgba(255,255,255,0.6)",
                     textDecoration: "none",
@@ -1851,6 +1861,7 @@ export default function ThreeDnaPose() {
                 </a>
                 <a
                   href="#"
+                  id="tdp-footer-privacy"
                   style={{
                     color: "rgba(255,255,255,0.6)",
                     textDecoration: "none",

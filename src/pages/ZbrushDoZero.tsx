@@ -120,9 +120,9 @@ const STYLES = `
   #zdz .fit-head .label.yes{color:var(--green);}
   #zdz .fit-head .label.no{color:var(--red);}
   #zdz .fit-head .rule{flex:1;height:1px;background:var(--border);}
-  #zdz .fit-sub{font-family:var(--s);font-style:italic;font-size:18px;color:var(--ink);margin-bottom:18px;}
+  #zdz .fit-sub{font-family:var(--n);font-size:18px;color:var(--ink);margin-bottom:18px;font-weight:600;}
   #zdz .fit-list{list-style:none;padding:0;margin:0;}
-  #zdz .fit-list li{padding:14px 0;border-top:1px solid var(--border);display:flex;gap:14px;font-size:14px;color:var(--muted);line-height:1.5;}
+  #zdz .fit-list li{padding:14px 0;border-top:1px solid var(--border);display:flex;gap:14px;font-size:14px;color:var(--muted);line-height:1.5;font-family:var(--n);}
   #zdz .fit-list li:first-child{border-top:none;}
   #zdz .fit-list .num{font-family:var(--d);font-size:14px;min-width:24px;}
   #zdz .fit-list .num.g{color:var(--green);}
@@ -130,13 +130,13 @@ const STYLES = `
   #zdz .fit-col .ctrl{position:absolute;right:36px;top:36px;color:var(--red);opacity:.7;}
 
   #zdz .modules-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;gap:32px;}
-  #zdz .modules-head p{font-family:var(--s);font-style:italic;font-size:18px;color:var(--muted);max-width:380px;text-align:right;margin:0;}
+  #zdz .modules-head p{font-family:var(--n);font-size:17px;color:var(--muted);max-width:380px;text-align:right;margin:0;line-height:1.5;}
   #zdz .modules-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
   #zdz .module-card{position:relative;}
   #zdz .module-art{position:relative;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--border);border-radius:16px;transition:border-color .3s, transform .3s;cursor:pointer;}
   #zdz .module-card:hover .module-art{border-color:rgba(183,148,246,0.35);transform:scale(1.02);}
   #zdz .module-foot{padding:14px 0;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--border);}
-  #zdz .module-foot .ch{font-family:var(--s);font-style:italic;font-size:14px;color:var(--muted);}
+  #zdz .module-foot .ch{font-family:var(--n);font-size:14px;color:var(--muted);font-weight:500;}
   #zdz .module-foot .vm{font-family:var(--n);font-size:11px;letter-spacing:0.22em;color:var(--purpleHi);transition:letter-spacing .2s;}
   #zdz .module-card:hover .module-foot .vm{letter-spacing:0.3em;}
 
@@ -167,16 +167,16 @@ const STYLES = `
   #zdz .price-ribbon{position:absolute;top:24px;right:-8px;background:linear-gradient(135deg,var(--purple),var(--magenta));color:#fff;padding:8px 16px;font-family:var(--n);font-size:10px;font-weight:800;letter-spacing:0.22em;text-transform:uppercase;}
   #zdz .price-head{padding:40px 32px 24px;border-bottom:1px solid var(--border);text-align:center;}
   #zdz .price-name{margin-top:18px;font-family:var(--d);font-size:38px;font-weight:400;letter-spacing:0.02em;text-transform:uppercase;}
-  #zdz .price-name .it{font-family:var(--s);font-style:italic;font-weight:500;text-transform:none;color:var(--purpleHi);letter-spacing:-0.01em;}
-  #zdz .price-tag{font-family:var(--s);font-style:italic;font-size:16px;color:var(--muted);margin-top:6px;}
+  #zdz .price-name .it{color:var(--purpleHi);letter-spacing:0.02em;}
+  #zdz .price-tag{font-family:var(--n);font-size:16px;color:var(--muted);margin-top:6px;font-weight:500;}
   #zdz .price-body{display:grid;grid-template-columns:1fr 1fr;}
   #zdz .price-amt{padding:40px 36px;border-right:1px solid var(--border);text-align:center;}
   #zdz .price-pre{font-family:var(--n);font-size:11px;color:var(--purpleHi);letter-spacing:0.28em;text-transform:uppercase;}
-  #zdz .price-inst{margin-top:18px;font-family:var(--s);font-style:italic;font-size:16px;color:var(--muted);}
+  #zdz .price-inst{margin-top:18px;font-family:var(--n);font-size:16px;color:var(--muted);font-weight:500;}
   #zdz .price-big{font-family:var(--d);font-weight:400;font-size:104px;line-height:1;letter-spacing:0.005em;margin-top:4px;color:var(--ink);}
   #zdz .price-juros{font-family:var(--s);font-style:italic;font-size:14px;color:var(--muted2);margin-top:6px;}
   #zdz .price-divider{height:1px;background:var(--border);margin:22px 0;}
-  #zdz .price-cash{font-size:14px;color:var(--muted);margin-bottom:22px;}
+  #zdz .price-cash{font-family:var(--n);font-size:14px;color:var(--muted);margin-bottom:22px;font-weight:500;}
   #zdz .price-feats{padding:40px 36px;}
   #zdz .price-feats .heading{font-family:var(--n);font-size:11px;color:var(--purpleHi);letter-spacing:0.28em;text-transform:uppercase;margin-bottom:18px;}
   #zdz .price-feats ul{list-style:none;padding:0;margin:0;}
@@ -189,7 +189,7 @@ const STYLES = `
   #zdz .social a{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02);transition:all .2s;}
   #zdz .social a:hover{color:#fff;background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.2);}
   #zdz .social svg{width:20px;height:20px;}
-  #zdz footer .copy{margin-top:14px;font-family:var(--s);font-style:italic;font-size:12px;color:var(--muted2);}
+  #zdz footer .copy{margin-top:14px;font-family:var(--n);font-size:11px;color:var(--muted2);text-transform:uppercase;letter-spacing:0.05em;}
   #zdz .back-top{display:inline-block;margin-top:18px;font-family:var(--n);font-size:10px;letter-spacing:0.22em;color:var(--muted2);text-transform:uppercase;transition:color .2s;}
   #zdz .back-top:hover{color:var(--purpleHi);}
 
@@ -277,21 +277,21 @@ export default function ZbrushDoZero() {
   return (
     <>
       <style>{STYLES}</style>
-      <a href="#zdz-oferta" className="zdz-cta" id="zdz-cta">Quero começar do zero <span className="arrow">→</span></a>
+      <a href="#zdz-oferta" className="zdz-cta" id="zdz-floating-cta">Quero começar do zero <span className="arrow">→</span></a>
       <div id="zdz">
         <main>
 
           <header className="nav rv">
-            <a className="logo" href="#" aria-label="ZBrush do Zero" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}><Logo /></a>
+            <a className="logo" id="zdz-nav-logo" href="#" aria-label="ZBrush do Zero" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}><Logo /></a>
             
             <nav className="nav-links">
-              <a href="#curso">Curso</a>
-              <a href="#modulos">Módulos</a>
-              <a href="#garantia">Garantia</a>
-              <a href="#zdz-oferta" className="highlight">Oferta</a>
+              <a href="#curso" id="zdz-nav-curso">Curso</a>
+              <a href="#modulos" id="zdz-nav-modulos">Módulos</a>
+              <a href="#garantia" id="zdz-nav-garantia">Garantia</a>
+              <a href="#zdz-oferta" className="highlight" id="zdz-nav-oferta">Oferta</a>
             </nav>
 
-            <a href="#" className="nav-login">Entrar</a>
+            <a href="#" className="nav-login" id="zdz-nav-login">Entrar</a>
           </header>
 
           <section className="hero">
@@ -305,7 +305,7 @@ export default function ZbrushDoZero() {
                 <img className="bust" src="https://zbrushdozero.com/var/assets/img/media/original/46e16046e3eb9f4f9c6cca002e9779e8/processo.png" alt="ZBrush Processo" />
               </div>
               <div className="rv d3" style={{ marginTop: '48px' }}>
-                <a href="#zdz-oferta" className="btn">Quero começar do zero <span className="arrow">→</span></a>
+                <a href="#zdz-oferta" className="btn" id="zdz-hero-cta">Quero começar do zero <span className="arrow">→</span></a>
                 <div className="micro">Acesso vitalício · 7 dias de garantia</div>
               </div>
             </div>
@@ -403,8 +403,8 @@ export default function ZbrushDoZero() {
                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 3 }}
                 ></iframe>
               </div>
-              <div className="video-foot rv">
-                <a href="#zdz-oferta" className="btn">Quero aprender o passo a passo <span className="arrow">→</span></a>
+              <div className="video-head rv">
+                <a href="#zdz-oferta" className="btn" id="zdz-process-cta">Quero aprender o passo a passo <span className="arrow">→</span></a>
                 <div className="meta">Aulas curtas • Método em etapas • Acesso imediato</div>
               </div>
             </div>
@@ -457,7 +457,7 @@ export default function ZbrushDoZero() {
                 ))}
               </div>
               <div style={{textAlign:'center',marginTop:'56px'}} className="rv">
-                <a href="#zdz-oferta" className="btn">Quero começar do zero <span className="arrow">→</span></a>
+                <a href="#zdz-oferta" className="btn" id="zdz-modules-cta">Quero começar do zero <span className="arrow">→</span></a>
               </div>
             </div>
           </section>
@@ -489,7 +489,7 @@ export default function ZbrushDoZero() {
                     <li><div className="dot"/>Reembolso integral em qualquer momento dentro dos 7 primeiros dias.</li>
                     <li><div className="dot"/>Sem perguntas, sem formulário extenso, sem dor de cabeça.</li>
                   </ul>
-                  <a href="#zdz-oferta" className="gua-btn">Quero entrar sem risco →</a>
+                  <a href="#zdz-oferta" className="gua-btn" id="zdz-garantia-cta">Quero entrar sem risco →</a>
                 </div>
               </div>
             </div>
@@ -512,7 +512,7 @@ export default function ZbrushDoZero() {
                     <div className="price-juros">sem juros</div>
                     <div className="price-divider"/>
                     <div className="price-cash">ou à vista <strong style={{color:'var(--ink)'}}>R$257</strong></div>
-                    <a href="https://pay.hotmart.com/H103748861J?checkoutMode=10" className="btn">Quero começar agora <span className="arrow">→</span></a>
+                    <a href="https://pay.hotmart.com/H103748861J?checkoutMode=10" className="btn" id="zdz-checkout-cta">Quero começar agora <span className="arrow">→</span></a>
                   </div>
                   <div className="price-feats">
                     <div className="heading">O que você recebe</div>
@@ -529,34 +529,34 @@ export default function ZbrushDoZero() {
 
           <footer className="rv" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '40px', padding: '96px 24px 64px' }}>
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-              <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}>
+              <a href="#" id="zdz-footer-logo" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}>
                 <Logo w={130} h={48}/>
               </a>
               <p style={{ fontFamily: 'var(--n)', fontSize: '9px', textTransform: 'uppercase', letterSpacing: '0.2em', color: 'rgba(255,255,255,0.4)', margin: 0, fontWeight: 700 }}>Escultura Digital & Impressão 3D</p>
             </div>
             
             <div className="social" style={{ marginBottom: 0, marginTop: 0, display: 'flex', gap: '24px' }}>
-              <a href="https://www.instagram.com/cardoso.3d/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
+              <a href="https://www.instagram.com/cardoso.3d/" id="zdz-footer-social-instagram" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '20px', height: '20px' }}><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
               </a>
-              <a href="https://www.youtube.com/@Cardoso.3d" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
+              <a href="https://www.youtube.com/@Cardoso.3d" id="zdz-footer-social-youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '20px', height: '20px' }}><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
               </a>
-              <a href="https://www.twitch.tv/cardoso_3d" target="_blank" rel="noopener noreferrer" aria-label="Twitch" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
+              <a href="https://www.twitch.tv/cardoso_3d" id="zdz-footer-social-twitch" target="_blank" rel="noopener noreferrer" aria-label="Twitch" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '20px', height: '20px' }}><path d="M21 2H3v16h5v4l4-4h5l4-4V2zm-10 9V7m5 4V7"/></svg>
               </a>
-              <a href="https://www.linkedin.com/in/vinicius-cardoso-3370631b7/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
+              <a href="https://www.linkedin.com/in/vinicius-cardoso-3370631b7/" id="zdz-footer-social-linkedin" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '20px', height: '20px' }}><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
               </a>
-              <a href="https://www.artstation.com/viniciusnunes" target="_blank" rel="noopener noreferrer" aria-label="ArtStation" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
+              <a href="https://www.artstation.com/viniciusnunes" id="zdz-footer-social-artstation" target="_blank" rel="noopener noreferrer" aria-label="ArtStation" style={{ width: '48px', height: '48px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s' }}>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: '20px', height: '20px' }}><circle cx="13.5" cy="13.5" r="8.5"/><path d="M7 10L5 6L2 11"/><path d="M8 21L10 17"/><path d="M19 10L21 6L23 11"/></svg>
               </a>
             </div>
             
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.05)', width: '100%', maxWidth: '384px', paddingTop: '32px' }}>
               <div style={{ display: 'flex', gap: '24px', fontFamily: 'var(--n)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: 600 }}>
-                <a href="#" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Termos</a>
-                <a href="#" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Privacidade</a>
+                <a href="#" id="zdz-footer-terms" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Termos</a>
+                <a href="#" id="zdz-footer-privacy" style={{ color: 'rgba(255,255,255,0.6)', textDecoration: 'none' }}>Privacidade</a>
               </div>
               <div className="copy" style={{ marginTop: '8px', opacity: 0.4, fontSize: '11px', fontFamily: 'var(--n)', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>&copy; {new Date().getFullYear()} Cardoso3D Studio</div>
             </div>
