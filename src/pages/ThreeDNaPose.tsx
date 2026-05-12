@@ -115,32 +115,25 @@ const STYLES = `
 
   /* Modules */
   #tdp .modules { padding: 96px 0; }
-  #tdp .mod-list { display: flex; flex-direction: column; gap: 16px; margin-top: 48px; }
-  #tdp .mod-item { border: 1px solid var(--border); border-radius: 12px; background: rgba(255,255,255,0.015); overflow: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-  #tdp .mod-item:hover { background: rgba(255,255,255,0.025); border-color: rgba(255,255,255,0.08); }
-  #tdp .mod-item.open { background: rgba(255,255,255,0.02); border-color: rgba(232,102,42,0.3); }
+  #tdp .mod-list { display: flex; flex-direction: column; gap: 48px; margin-top: 48px; }
+  #tdp .mod-item { border: 1px solid var(--border); border-radius: 16px; background: rgba(255,255,255,0.015); overflow: hidden; }
   
-  #tdp .mod-header { display: flex; padding: 32px; cursor: pointer; position: relative; gap: 32px; align-items: flex-start; }
-  #tdp .mod-num { font-family: var(--d); font-size: 64px; line-height: 0.8; color: var(--copper); opacity: 0.8; }
+  #tdp .mod-header { padding: 40px 48px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01); }
+  #tdp .mod-head-top { display: flex; align-items: baseline; gap: 16px; margin-bottom: 8px; }
+  #tdp .mod-num { font-family: var(--d); font-size: 32px; color: var(--copper); opacity: 0.8; }
+  #tdp .mod-label { font-size: 13px; font-weight: 800; color: var(--copperHi); letter-spacing: 0.15em; text-transform: uppercase; }
+  #tdp .mod-title { font-family: var(--d); font-size: 36px; color: #fff; line-height: 1.1; text-transform: uppercase; letter-spacing: 0.02em; }
   
-  #tdp .mod-titles { flex: 1; }
-  #tdp .mod-label { font-size: 11px; font-weight: 800; color: var(--copperHi); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 8px; }
-  #tdp .mod-title { font-family: var(--d); font-size: 28px; color: #fff; line-height: 1.1; text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.02em; }
-  #tdp .mod-sub { font-size: 15px; color: var(--muted); }
+  #tdp .mod-body { padding: 48px; }
+  #tdp .mod-body-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  #tdp .mod-img-wrap { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 16/9; }
+  #tdp .mod-img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
   
-  #tdp .mod-toggle { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: var(--muted); transition: transform 0.3s; flex-shrink: 0; }
-  #tdp .mod-item.open .mod-toggle { transform: rotate(180deg); }
-  
-  #tdp .mod-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease; opacity: 0; padding: 0 32px; }
-  #tdp .mod-item.open .mod-body { opacity: 1; padding-bottom: 32px; }
-  
-  #tdp .mod-body-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-  #tdp .mod-body-inner .empty-left { display: block; }
-  
-  #tdp .mod-desc { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.6; margin-bottom: 24px; padding-top: 8px; }
+  #tdp .mod-content-right { display: flex; flex-direction: column; gap: 24px; }
+  #tdp .mod-desc { font-size: 16px; color: var(--muted); line-height: 1.6; font-weight: 500; }
   #tdp .mod-topics { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
-  #tdp .mod-topics li { display: flex; align-items: flex-start; gap: 12px; font-size: 15px; color: var(--muted); }
-  #tdp .mod-topics li svg { width: 16px; height: 16px; color: var(--copper); flex-shrink: 0; margin-top: 2px; }
+  #tdp .mod-topics li { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--bone); font-family: var(--n); }
+  #tdp .mod-topics li svg { width: 18px; height: 18px; color: var(--copper); flex-shrink: 0; margin-top: 2px; }
 
   /* About */
   #tdp .about { padding: 96px 0; background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -373,7 +366,11 @@ const STYLES = `
     #tdp .hero-fig { aspect-ratio: 4/5; }
     #tdp .marquee .row { font-size: 28px; gap: 24px; }
     #tdp .problem, #tdp .method, #tdp .modules, #tdp .about, #tdp .social-proof, #tdp .compare, #tdp .offer, #tdp .faq, #tdp .final, #tdp .gua { padding: 64px 0; }
-    #tdp .pillars, #tdp .mod-grid, #tdp .about-grid, #tdp .comp-grid, #tdp .offer-body { grid-template-columns: 1fr; }
+    #tdp .pillars, #tdp .mod-body-inner, #tdp .about-grid, #tdp .comp-grid, #tdp .offer-body { grid-template-columns: 1fr; }
+    #tdp .mod-header { padding: 32px 24px; }
+    #tdp .mod-title { font-size: 24px; }
+    #tdp .mod-body { padding: 24px; }
+    #tdp .mod-body-inner { gap: 32px; }
     #tdp .about-grid { gap: 32px; }
     #tdp .bna-wrap { margin-top: 64px; padding-top: 64px; }
     #tdp .bna-card { flex: 0 0 320px; }
@@ -415,75 +412,6 @@ const STYLES = `
 
 `;
 
-const mods = [
-  {
-    n: "01",
-    t: "Apresentação e\nWorkflow",
-    sub: "Interface, fluxo de trabalho e monetização",
-    d: "Você vai aprender a organizar seu fluxo de trabalho no ZBrush, dominar a interface, entender a estrutura do curso e descobrir formas reais de monetizar sua arte no mercado criativo.",
-    topics: [
-      "Setup completo do ZBrush",
-      "Hotkeys e atalhos de produtividade",
-      "Caminhos de monetização real",
-    ],
-  },
-  {
-    n: "02",
-    t: "Poses e\nComposição",
-    sub: "Fundamentos para dar vida à escultura",
-    d: "Aprenda os fundamentos essenciais para criar poses dinâmicas, utilizando linha de ação, equilíbrio, peso e exagero de proporção. Teoria e prática para dar mais vida e impacto às suas criações.",
-    topics: [
-      "Linha de ação e ritmo",
-      "Distribuição de peso e silhueta",
-      "Como evitar poses duras e estáticas",
-    ],
-  },
-  {
-    n: "03",
-    t: "Blocagem\nAtômica",
-    sub: "Volumes principais antes dos detalhes",
-    d: "Estruture o corpo em pose com foco nos volumes principais, nos pontos de referência anatômicos (landmarks) e na direção das formas, garantindo uma base sólida e expressiva.",
-    topics: [
-      "Landmarks anatômicos essenciais",
-      "Estruturação em blocos primitivos",
-      "Massa e proporção na prática",
-    ],
-  },
-  {
-    n: "04",
-    t: "Detalhamento\nAnatômico",
-    sub: "Refinamento e acabamento primoroso",
-    d: "Refine as inserções musculares, aprimore os detalhes da escultura e dê vida ao modelo com a introdução ao Polypaint. Um passo essencial para elevar o realismo e a expressividade.",
-    topics: [
-      "Inserções musculares precisas e realistas",
-      "Noções de Polypaint e cores de base",
-      "Ajustes finos e expressividade anatômica",
-    ],
-  },
-  {
-    n: "05",
-    t: "Escultura de Tecidos\ne Acessórios",
-    sub: "Dobra, peso e vestuário em 3D",
-    d: "Entenda o comportamento de diferentes tipos de tecido, aprenda a direcionar o fluxo das dobras e desenvolva peças com volume, como botas e acessórios.",
-    topics: [
-      "Tipos de dobras (tensão, compressão, etc)",
-      "Modelagem de couro e tecidos grossos",
-      "Integração de adereços no personagem",
-    ],
-  },
-  {
-    n: "06",
-    t: "Criação de Personagem\nCompleto",
-    sub: "Projeto final: Da blocagem ao render",
-    d: "Da pose inicial ao corte para impressão, passando pela renderização na Unreal Engine 5 e finalização no Photoshop, modele o Spider-Man do zero aplicando tudo que aprendeu.",
-    topics: [
-      "Escultura completa do Spider-Man",
-      "Cortes (Keying) para impressão 3D",
-      "Renderização na UE5 e pós no Photoshop",
-    ],
-  },
-];
-
 const portImgs = [
   "https://3dnapose.com/wp-content/uploads/2025/11/1.jpg",
   "https://3dnapose.com/wp-content/uploads/2025/11/2.jpg",
@@ -493,6 +421,81 @@ const portImgs = [
   "https://3dnapose.com/wp-content/uploads/2025/11/6.jpg",
   "https://3dnapose.com/wp-content/uploads/2025/11/7.jpg",
   "https://3dnapose.com/wp-content/uploads/2025/11/8.jpg",
+];
+
+const mods = [
+  {
+    n: "01",
+    t: "Apresentação, Workflow, Interface, Workflow e Monetização",
+    sub: "Interface, fluxo de trabalho e monetização",
+    d: "Você vai aprender a organizar seu fluxo de trabalho no Zbrush, dominar a interface, entender a estrutura do curso e descobrir formas reais de monetizar sua arte no mercado criativo.",
+    topics: [
+      "Setup completo do Zbrush",
+      "Hotkeys e atalhos de produtividade",
+      "Caminhos de monetização real",
+    ],
+    img: portImgs[0],
+  },
+  {
+    n: "02",
+    t: "Poses e Composição",
+    sub: "Fundamentos para dar vida à escultura",
+    d: "Aprenda os fundamentos essenciais para criar poses dinâmicas, utilizando linha de ação, equilíbrio, peso e exagero de proporção. Teoria e prática para dar mais vida e impacto às suas criações.",
+    topics: [
+      "Linha de ação e ritmo",
+      "Distribuição de peso e silhueta",
+      "Como evitar poses duras e estáticas",
+    ],
+    img: portImgs[1],
+  },
+  {
+    n: "03",
+    t: "Blocagem Atômica",
+    sub: "Volumes principais antes dos detalhes",
+    d: "Estruture o corpo em pose com foco nos volumes principais, nos pontos de referência anatômicos (landmarks) e na direção das formas, garantindo uma base sólida e expressiva.",
+    topics: [
+      "Landmarks anatômicos essenciais",
+      "Estruturação em blocos primitivos",
+      "Massa e proporção na prática",
+    ],
+    img: portImgs[2],
+  },
+  {
+    n: "04",
+    t: "Detalhamento Anatômico",
+    sub: "Refinamento e acabamento primoroso",
+    d: "Refine as inserções musculares, aprimore os detalhes da escultura e dê vida ao modelo com a introdução ao Polypaint. Um passo essencial para elevar o realismo e a expressividade.",
+    topics: [
+      "Inserções musculares precisas e realistas",
+      "Noções de Polypaint e cores de base",
+      "Ajustes finos e expressividade anatômica",
+    ],
+    img: portImgs[3],
+  },
+  {
+    n: "05",
+    t: "Escultura de Tecidos e Acessórios",
+    sub: "Dobra, peso e vestuário em 3D",
+    d: "Entenda o comportamento de differentes tipos de tecido, aprenda a direcionar o fluxo das dobras e desenvolva peças com volume, como botas e acessórios.",
+    topics: [
+      "Tipos de dobras (tensão, compressão, etc)",
+      "Modelagem de couro e tecidos grossos",
+      "Integração de adereços no personagem",
+    ],
+    img: portImgs[4],
+  },
+  {
+    n: "06",
+    t: "Criação de Personagem Completo",
+    sub: "Projeto final: Da blocagem ao render",
+    d: "Da pose inicial ao corte para impressão, passando pela renderização na Unreal Engine 5 e finalização no Photoshop, modele o Spider-Man do zero aplicando tudo que aprendeu.",
+    topics: [
+      "Escultura completa do Spider-Man",
+      "Cortes (Keying) para impressão 3D",
+      "Renderização na UE5 e pós no Photoshop",
+    ],
+    img: portImgs[5],
+  },
 ];
 
 const testimonials = [
@@ -624,7 +627,6 @@ function useDraggableCarousel(speed = 0.5) {
 
 export default function ThreeDnaPose() {
   const [lbImg, setLbImg] = React.useState<string | null>(null);
-  const [openMod, setOpenMod] = React.useState<number>(0);
   const testCarousel = useDraggableCarousel(0.5);
   const bnaCarousel = useDraggableCarousel(0.5);
 
@@ -1043,45 +1045,19 @@ export default function ThreeDnaPose() {
 
               <div className="mod-list">
                 {mods.map((m, i) => (
-                  <div
-                    key={i}
-                    className={`mod-item rv d${(i % 3) + 1} ${openMod === i ? "open" : ""}`}
-                  >
-                    <div
-                      className="mod-header"
-                      onClick={() => setOpenMod(openMod === i ? -1 : i)}
-                    >
-                      <div className="mod-num">{m.n}</div>
-                      <div className="mod-titles">
-                        <div className="mod-label">MÓDULO {m.n}</div>
-                        <div className="mod-title">
-                          {m.t.split("\n").map((l, j) => (
-                            <React.Fragment key={j}>
-                              {l}
-                              {j === 0 && m.t.split("\n").length > 1 && <br />}
-                            </React.Fragment>
-                          ))}
-                        </div>
-                        <div className="mod-sub">{m.sub}</div>
+                  <div key={i} className={`mod-item rv d${(i % 3) + 1}`}>
+                    <div className="mod-header">
+                      <div className="mod-head-top">
+                        <span className="mod-num">{m.n}</span>
+                        <span className="mod-label">MÓDULO {m.n}</span>
                       </div>
-                      <div className="mod-toggle">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <polyline points="6 9 12 15 18 9"></polyline>
-                        </svg>
-                      </div>
+                      <div className="mod-title">{m.t}</div>
                     </div>
                     <div className="mod-body">
                       <div className="mod-body-inner">
-                        <div className="empty-left"></div>
+                        <div className="mod-img-wrap">
+                          <img src={m.img} alt={m.t} draggable="false" />
+                        </div>
                         <div className="mod-content-right">
                           <div className="mod-desc">{m.d}</div>
                           <ul className="mod-topics">
@@ -1091,7 +1067,7 @@ export default function ThreeDnaPose() {
                                   viewBox="0 0 24 24"
                                   fill="none"
                                   stroke="currentColor"
-                                  strokeWidth="2"
+                                  strokeWidth="3"
                                   strokeLinecap="round"
                                   strokeLinejoin="round"
                                 >
