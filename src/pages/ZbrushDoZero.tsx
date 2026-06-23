@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
+import { Play, Pause, Volume2, VolumeX, Volume1, ChevronDown } from 'lucide-react'
 
 const STYLES = `
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap');
@@ -108,7 +109,7 @@ const STYLES = `
   #zdz .video-frame .vbar{position:absolute;left:24px;right:24px;bottom:20px;display:flex;justify-content:space-between;align-items:center;z-index:2;}
   #zdz .video-frame .vbar .time{font-size:11px;color:#fff;letter-spacing:0.16em;}
   #zdz .video-frame .vbar .prog{flex:1;height:1px;margin:0 24px;background:rgba(255,255,255,0.25);position:relative;}
-  #zdz .video-frame .vbar .prog::after{content:"";position:absolute;inset:0;background:#fff;}
+  #zdz .video-frame .vbar .prog::after{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--progress, 100%);background:#fff;}
   #zdz .video-foot{margin-top:48px;display:flex;flex-direction:column;align-items:center;gap:20px;padding-top:32px;}
   #zdz .video-foot .meta{font-family:var(--n);font-size:11px;color:var(--muted);letter-spacing:0.22em;text-transform:uppercase;}
 
@@ -233,6 +234,257 @@ const STYLES = `
     .zdz-cta{font-size:11px;padding:14px 22px;}
   }
   @media(min-width:901px){.zdz-cta{display:none;}}
+
+  /* Custom premium player styles */
+  #zdz .player-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  #zdz .player-iframe-wrapper {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+  #zdz .player-iframe-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    pointer-events: none;
+  }
+  #zdz .player-click-shield {
+    position: absolute;
+    inset: 0;
+    bottom: 56px;
+    z-index: 10;
+    cursor: pointer;
+  }
+  #zdz .player-cover {
+    position: absolute;
+    inset: 0;
+    z-index: 9;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.4s ease;
+  }
+  #zdz .player-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65;
+  }
+  #zdz .player-cover-play {
+    position: absolute;
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--magenta));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 10px rgba(230, 51, 168, 0.15), 0 0 40px var(--magenta);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 11;
+  }
+  #zdz .player-cover-play:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 16px rgba(230, 51, 168, 0.2), 0 0 60px var(--magenta);
+  }
+  #zdz .player-controls-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 56px;
+    background: linear-gradient(to top, rgba(10, 6, 18, 0.98), rgba(10, 6, 18, 0.85) 60%, transparent);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 15;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    user-select: none;
+  }
+  #zdz .player-controls-bar.hidden {
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+  }
+  #zdz .player-left, #zdz .player-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  #zdz .player-timeline-wrapper {
+    flex: 1;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin: 0 16px;
+    position: relative;
+  }
+  #zdz .player-timeline-track {
+    width: 100%;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 99px;
+    position: relative;
+    transition: height 0.15s ease;
+  }
+  #zdz .player-timeline-wrapper:hover .player-timeline-track {
+    height: 5px;
+  }
+  #zdz .player-timeline-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, var(--purple), var(--magenta));
+    border-radius: 99px;
+  }
+  #zdz .player-timeline-handle {
+    position: absolute;
+    top: 50%;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.15s ease;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  #zdz .player-timeline-wrapper:hover .player-timeline-handle {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  #zdz .player-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+  }
+  #zdz .player-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+  }
+  #zdz .player-time-display {
+    font-size: 11px;
+    font-family: var(--n);
+    color: #d1d5db;
+    min-width: 80px;
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  #zdz .player-volume-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+  }
+  #zdz .player-volume-slider-wrapper {
+    width: 0;
+    overflow: hidden;
+    transition: width 0.2s ease, opacity 0.2s ease;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+  }
+  #zdz .player-volume-container:hover .player-volume-slider-wrapper {
+    width: 80px;
+    opacity: 1;
+  }
+  #zdz .player-volume-slider {
+    width: 100%;
+    height: 4px;
+    -webkit-appearance: none;
+    background: rgba(255,255,255,0.2);
+    border-radius: 99px;
+    outline: none;
+    cursor: pointer;
+  }
+  #zdz .player-volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  }
+  #zdz .player-quality-container {
+    position: relative;
+  }
+  #zdz .player-quality-btn {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    background: transparent;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s;
+    text-transform: uppercase;
+  }
+  #zdz .player-quality-btn:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.4);
+  }
+  #zdz .player-quality-menu {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    right: 0;
+    background: #140820;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 0;
+    min-width: 100px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+  }
+  #zdz .player-quality-item {
+    padding: 8px 16px;
+    font-size: 12px;
+    font-family: var(--n);
+    color: var(--muted);
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  #zdz .player-quality-item:hover {
+    background: rgba(255,255,255,0.05);
+    color: #fff;
+  }
+  #zdz .player-quality-item.active {
+    color: var(--magenta);
+    font-weight: 700;
+    background: rgba(230,51,168,0.05);
+  }
 `
 
 const Logo = ({ w = 170, h = 62 }: { w?: number; h?: number }) => (
@@ -251,6 +503,183 @@ const MODULES = [
 ]
 
 export default function ZbrushDoZero() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(54); // default 54s, updated onReady
+  const [volume, setVolume] = useState(100);
+  const [isMuted, setIsMuted] = useState(false);
+  const [selectedQuality, setSelectedQuality] = useState('1080p');
+  const [showQualityMenu, setShowQualityMenu] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+
+  const playerRef = useRef<any>(null);
+  const controlsTimeoutRef = useRef<any>(null);
+
+  useEffect(() => {
+    // 1. Load YouTube script if not present
+    if (!(window as any).YT) {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      const firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode?.insertBefore(tag, firstScriptTag);
+    }
+
+    // 2. Poll to check if window.YT and window.YT.Player are loaded
+    let interval = setInterval(() => {
+      if ((window as any).YT && (window as any).YT.Player) {
+        clearInterval(interval);
+        initYTPlayer();
+      }
+    }, 100);
+
+    return () => {
+      clearInterval(interval);
+      if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    };
+  }, []);
+
+  const initYTPlayer = () => {
+    if (playerRef.current) return;
+    try {
+      playerRef.current = new (window as any).YT.Player('youtube-hero-player', {
+        videoId: 'Jjw6at0zSjQ',
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          rel: 0,
+          showinfo: 0,
+          modestbranding: 1,
+          iv_load_policy: 3,
+          fs: 0,
+          disablekb: 1,
+          origin: window.location.origin,
+        },
+        events: {
+          onReady: (event: any) => {
+            setPlayerReady(true);
+            setDuration(event.target.getDuration() || 54);
+            event.target.setVolume(100);
+          },
+          onStateChange: (event: any) => {
+            // PlayerState: PLAYING (1), PAUSED (2), ENDED (0), BUFFERING (3)
+            if (event.data === 1) {
+              setIsPlaying(true);
+              resetControlsTimeout();
+            } else if (event.data === 2) {
+              setIsPlaying(false);
+              setShowControls(true);
+            } else if (event.data === 0) {
+              setIsPlaying(false);
+              setCurrentTime(0);
+              setShowControls(true);
+            }
+          }
+        }
+      });
+    } catch (err) {
+      console.error('Error loading custom YouTube player:', err);
+    }
+  };
+
+  useEffect(() => {
+    let updateTimer: any;
+    if (isPlaying && playerRef.current && playerRef.current.getCurrentTime) {
+      updateTimer = setInterval(() => {
+        setCurrentTime(playerRef.current.getCurrentTime());
+      }, 250);
+    }
+    return () => clearInterval(updateTimer);
+  }, [isPlaying]);
+
+  const togglePlayPause = (e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (!playerRef.current || !playerReady) return;
+    if (isPlaying) {
+      playerRef.current.pauseVideo();
+      setIsPlaying(false);
+    } else {
+      playerRef.current.playVideo();
+      setIsPlaying(true);
+      resetControlsTimeout();
+    }
+  };
+
+  const handleSeek = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    if (!playerRef.current || !playerReady) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const percentage = Math.max(0, Math.min(1, clickX / rect.width));
+    const seekSeconds = percentage * duration;
+    setCurrentTime(seekSeconds);
+    playerRef.current.seekTo(seekSeconds, true);
+    resetControlsTimeout();
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    const val = parseInt(e.target.value, 10);
+    setVolume(val);
+    if (playerRef.current && playerReady) {
+      playerRef.current.setVolume(val);
+      if (val > 0 && isMuted) {
+        playerRef.current.unMute();
+        setIsMuted(false);
+      }
+    }
+    resetControlsTimeout();
+  };
+
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!playerRef.current || !playerReady) return;
+    if (isMuted) {
+      playerRef.current.unMute();
+      setIsMuted(false);
+      playerRef.current.setVolume(volume);
+    } else {
+      playerRef.current.mute();
+      setIsMuted(true);
+    }
+    resetControlsTimeout();
+  };
+
+  const handleQualityChange = (quality: string) => {
+    setSelectedQuality(quality);
+    setShowQualityMenu(false);
+    if (!playerRef.current || !playerReady) return;
+
+    let ytQuality = 'default';
+    if (quality === '1080p') ytQuality = 'hd1080';
+    else if (quality === '720p') ytQuality = 'hd720';
+    else if (quality === '480p') ytQuality = 'large';
+    else if (quality === '360p') ytQuality = 'medium';
+
+    playerRef.current.setPlaybackQuality(ytQuality);
+    resetControlsTimeout();
+  };
+
+  const resetControlsTimeout = () => {
+    setShowControls(true);
+    if (controlsTimeoutRef.current) clearTimeout(controlsTimeoutRef.current);
+    if (isPlaying) {
+      controlsTimeoutRef.current = setTimeout(() => {
+        setShowControls(false);
+      }, 2500);
+    }
+  };
+
+  const handlePlayerMouseMove = () => {
+    resetControlsTimeout();
+  };
+
+  const formatTime = (secs: number) => {
+    const minutes = Math.floor(secs / 60)
+    const seconds = Math.floor(secs % 60)
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`
+  }
+
   useEffect(() => {
     const els = document.querySelectorAll('#zdz .rv')
     const obs = new IntersectionObserver(entries => {
@@ -301,8 +730,104 @@ export default function ZbrushDoZero() {
             <div className="w">
               <h1 className="hd rv">Do Zero ao seu primeiro<br /><span className="it">modelo pronto pra imprimir</span></h1>
               <p className="sub rv d1">Aprenda ZBrush mesmo sem nunca ter aberto o programa. Com um passo a passo simples e organizado.</p>
-              <div className="hero-img rv d2" aria-label="ZBrush — modelos 3D">
-                <img className="bust" src="https://zbrushdozero.com/var/assets/img/media/original/46e16046e3eb9f4f9c6cca002e9779e8/processo.png" alt="ZBrush Processo" />
+              <div 
+                className="hero-img rv d2" 
+                style={{ aspectRatio: '16/9', position: 'relative', overflow: 'hidden', borderRadius: '16px', background: '#000', border: '1px solid var(--border)' }} 
+                aria-label="ZBrush — modelos 3D"
+                onMouseMove={handlePlayerMouseMove}
+                onMouseLeave={() => isPlaying && setShowControls(false)}
+              >
+                <div className="player-container">
+                  {/* YouTube Iframe element */}
+                  <div className="player-iframe-wrapper">
+                    <div id="youtube-hero-player" />
+                  </div>
+
+                  {/* Absolute Click Shield: captures clicks to play/pause and prevents YouTube redirects/interactions */}
+                  <div className="player-click-shield" onClick={() => togglePlayPause()} />
+
+                  {/* Custom Poster Image / Start Cover */}
+                  {!isPlaying && currentTime === 0 && (
+                    <div className="player-cover" onClick={() => togglePlayPause()}>
+                      <img 
+                        src="https://zbrushdozero.com/var/assets/img/media/original/46e16046e3eb9f4f9c6cca002e9779e8/processo.png" 
+                        alt="Play Video" 
+                      />
+                      <div className="player-cover-play">
+                        <Play size={36} fill="#fff" stroke="#fff" style={{ marginLeft: '4px' }} />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Sleek Custom Control Bar */}
+                  <div className={`player-controls-bar ${(!showControls && isPlaying) ? 'hidden' : ''}`}>
+                    <div className="player-left">
+                      <button className="player-btn" onClick={togglePlayPause} aria-label={isPlaying ? "Pause" : "Play"}>
+                        {isPlaying ? <Pause size={18} fill="#fff" /> : <Play size={18} fill="#fff" />}
+                      </button>
+
+                      <div className="player-volume-container">
+                        <button className="player-btn" onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
+                          {isMuted || volume === 0 ? <VolumeX size={18} /> : volume < 50 ? <Volume1 size={18} /> : <Volume2 size={18} />}
+                        </button>
+                        <div className="player-volume-slider-wrapper">
+                          <input 
+                            type="range" 
+                            min="0" 
+                            max="100" 
+                            value={isMuted ? 0 : volume} 
+                            onChange={handleVolumeChange} 
+                            className="player-volume-slider"
+                            style={{ background: `linear-gradient(to right, var(--magenta) ${isMuted ? 0 : volume}%, rgba(255,255,255,0.2) ${isMuted ? 0 : volume}%)` }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="player-time-display">
+                        {formatTime(Math.floor(currentTime))} / {formatTime(Math.floor(duration))}
+                      </div>
+                    </div>
+
+                    {/* Horizontal seeking timeline */}
+                    <div className="player-timeline-wrapper" onClick={handleSeek}>
+                      <div className="player-timeline-track">
+                        <div 
+                          className="player-timeline-progress" 
+                          style={{ width: `${(currentTime / duration) * 100}%` }} 
+                        />
+                        <div 
+                          className="player-timeline-handle" 
+                          style={{ left: `${(currentTime / duration) * 100}%` }} 
+                        />
+                      </div>
+                    </div>
+
+                    <div className="player-right">
+                      <div className="player-quality-container">
+                        <button 
+                          className="player-quality-btn" 
+                          onClick={(e) => { e.stopPropagation(); setShowQualityMenu(!showQualityMenu); }}
+                        >
+                          {selectedQuality} <ChevronDown size={12} />
+                        </button>
+                        
+                        {showQualityMenu && (
+                          <div className="player-quality-menu">
+                            {['1080p', '720p', '480p', '360p', 'Auto'].map((q) => (
+                              <button 
+                                key={q} 
+                                className={`player-quality-item ${selectedQuality === q ? 'active' : ''}`}
+                                onClick={(e) => { e.stopPropagation(); handleQualityChange(q); }}
+                              >
+                                {q}
+                              </button>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="rv d3" style={{ marginTop: '48px' }}>
                 <a href="#zdz-oferta" className="btn" id="zdz-hero-cta">Quero começar do zero <span className="arrow">→</span></a>
@@ -403,8 +928,8 @@ export default function ZbrushDoZero() {
                   style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 3 }}
                 ></iframe>
               </div>
-              <div className="video-head rv">
-                <a href="#zdz-oferta" className="btn" id="zdz-process-cta">Quero aprender o passo a passo <span className="arrow">→</span></a>
+              <div className="video-foot rv">
+                <a href="#zdz-oferta" className="btn" id="zdz-process-cta" style={{ padding: '18px 48px' }}>Quero aprender o passo a passo <span className="arrow">→</span></a>
                 <div className="meta">Aulas curtas • Método em etapas • Acesso imediato</div>
               </div>
             </div>

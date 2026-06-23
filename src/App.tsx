@@ -1,4 +1,6 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { initTrackingSystem, restoreParamsToAddressBar, propagateTrackingParamsToLinks, propagateTrackingParamsToForms } from './utils/tracking';
 import Header from './components/Header';
 import ProductCard from './components/ProductCard';
 import { motion } from 'motion/react';
@@ -104,9 +106,29 @@ function Home() {
   );
 }
 
+function RouteTracker() {
+  const location = useLocation();
+
+  useEffect(() => {
+    restoreParamsToAddressBar();
+    propagateTrackingParamsToLinks();
+    propagateTrackingParamsToForms();
+  }, [location]);
+
+  return null;
+}
+
 export default function App() {
+  useEffect(() => {
+    const cleanup = initTrackingSystem();
+    return () => {
+      cleanup();
+    };
+  }, []);
+
   return (
     <Router>
+      <RouteTracker />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/zbrushdozero" element={<ZbrushDoZero />} />
