@@ -33,9 +33,13 @@ const STYLES = `
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    overflow-x: hidden;
+    max-width: 100vw;
+    position: relative;
   }
-  #tdp * { box-sizing: border-box; }
+  #tdp * { box-sizing: border-box; word-wrap: break-word; overflow-wrap: break-word; }
   #tdp a { color: inherit; text-decoration: none; }
+  #tdp .hd, #tdp .hs, #tdp h1, #tdp h2, #tdp h3, #tdp h4 { word-wrap: break-word; overflow-wrap: break-word; word-break: keep-all; }
   #tdp::before {
     content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 0;
     background: radial-gradient(900px 600px at 80% -10%, rgba(232,102,42,0.12), transparent 60%),
@@ -369,6 +373,11 @@ const STYLES = `
     #tdp .marquee .row { font-size: 28px; gap: 24px; }
     #tdp .problem, #tdp .method, #tdp .modules, #tdp .about, #tdp .social-proof, #tdp .compare, #tdp .offer, #tdp .faq, #tdp .final, #tdp .gua { padding: 64px 0; }
     #tdp .pillars, #tdp .mod-body-inner, #tdp .about-grid, #tdp .comp-grid, #tdp .offer-body { grid-template-columns: 1fr; }
+    #tdp .pillar-icon { width: 48px; height: 48px; box-shadow: inset 0 0 16px rgba(232,102,42,0.1); }
+    #tdp .pillar-icon svg { width: 22px; height: 22px; }
+    #tdp .faq-icon { width: 28px; height: 28px; }
+    #tdp .faq-icon svg { width: 12px; height: 12px; }
+    #tdp .comp-list-item svg { width: 16px; height: 16px; margin-top: 2px; }
     #tdp .mod-header { padding: 32px 24px; gap: 20px; }
     #tdp .mod-num { font-size: 56px; }
     #tdp .mod-title { font-size: 24px; }
@@ -409,6 +418,48 @@ const STYLES = `
     #tdp .gua-medal .num { font-size: 80px; }
     #tdp .gua-right-hd { font-size: 42px; }
     #tdp .gua-list li { align-items: center; text-align: left; }
+  }
+  @media(max-width: 480px) {
+    #tdp .w { padding: 0 20px; }
+    #tdp .nav { padding: 16px 20px; }
+    #tdp .nav-login { padding: 8px 16px; font-size: 10px; }
+    #tdp .hd, #tdp .hs { font-size: 28px; }
+    #tdp .hero p.sub { font-size: 14px; margin: 16px auto 24px; }
+    #tdp .bna-card { flex: 0 0 280px; }
+    #tdp .pillar-icon { width: 40px; height: 40px; }
+    #tdp .pillar-icon svg { width: 18px; height: 18px; }
+    #tdp .faq-icon { width: 24px; height: 24px; }
+    #tdp .faq-icon svg { width: 10px; height: 10px; }
+    #tdp .comp-list-item svg { width: 14px; height: 14px; }
+    #tdp .gua-medal { width: 240px; height: 240px; }
+    #tdp .gua-medal .num { font-size: 64px; }
+    #tdp .offer-head h3 { font-size: 24px; }
+    #tdp .mod-num { font-size: 40px; }
+    #tdp .mod-title { font-size: 20px; }
+    #tdp .price-val { font-size: 52px; }
+    #tdp .price-val .amount { font-size: 52px; }
+    #tdp .price-val .currency { font-size: 24px; }
+    #tdp .gua-right-hd { font-size: 26px; }
+    #tdp .btn { font-size: 11px; padding: 14px 20px; }
+    #tdp .about-stats { grid-template-columns: 1fr; }
+  }
+  @media(max-width: 360px) {
+    #tdp .w { padding: 0 16px; }
+    #tdp .nav { padding: 12px 16px; }
+    #tdp .nav-login { padding: 6px 12px; font-size: 9px; }
+    #tdp .hd, #tdp .hs { font-size: 24px; }
+    #tdp .bna-card { flex: 0 0 240px; }
+    #tdp .pillar-icon { width: 36px; height: 36px; }
+    #tdp .pillar-icon svg { width: 16px; height: 16px; }
+    #tdp .gua-medal { width: 200px; height: 200px; }
+    #tdp .gua-medal .num { font-size: 52px; }
+    #tdp .offer-head h3 { font-size: 20px; }
+    #tdp .mod-num { font-size: 32px; }
+    #tdp .mod-title { font-size: 18px; }
+    #tdp .price-val { font-size: 44px; }
+    #tdp .price-val .amount { font-size: 44px; }
+    #tdp .gua-right-hd { font-size: 22px; }
+    #tdp .btn { font-size: 10px; padding: 12px 16px; }
   }
   @media(min-width: 769px) {
     .tdp-cta { display: none !important; }
